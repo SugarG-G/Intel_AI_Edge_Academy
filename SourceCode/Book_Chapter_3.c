@@ -205,14 +205,14 @@ int main(void)
 // [3-8] const를 사용한 변수
 /***********************************************************/
 
-#if 1
+#if 0
 #include <stdio.h>
 
 int main(void)
 {
 	int income = 0;
     double tax;
-    const double tax_rate = 0.065;
+    const double tax_rate = 0.065; //const는 선언과 동시에 해주어야함
 
     income = 400;
     tax = income * tax_rate;
@@ -223,15 +223,21 @@ int main(void)
 #endif
 
 /***********************************************************/
-// [0-0] 타이틀
+// [3-확인문제]
 /***********************************************************/
 
-#if 0
+#if 1
 #include <stdio.h>
 
 int main(void)
 {
-	
+	int a = 0; // 0
+    a = a + 1; // 1
+    a = a + 2; // 3
+    a = a + 3; // 6
+    
+    printf("a : %d", a);
+
 	return 0;
 }
 #endif
