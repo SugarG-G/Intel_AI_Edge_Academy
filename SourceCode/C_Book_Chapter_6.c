@@ -439,28 +439,45 @@ int main(void)
 
 int main(void)
 {
-	for(int j = 0; j < 5; j++){
-        for(int i = j; i < 5; i++){
+    for (int j = 0; j < 5; j++)
+    {
+        for (int i = j; i < 5; i++)
+        {
+            printf(" ");
+        }
+        for (int k = 0; k <= j; k++)
+        {
             printf("*");
         }
         printf("\n");
     }
 
-	return 0;
+    return 0;
 }
 #endif
 
 /***********************************************************/
-// [0-0] 타이틀
+// [6-15] 별찍기 응용 5
 /***********************************************************/
 
-#if 0
+#if 1
 #include <stdio.h>
 
 int main(void)
 {
-	
-	return 0;
+    for (int j = 1; j <= 5; j++)
+    {
+        for (int i = 1; i <= j - 1; i++)
+        {
+            printf(" ");
+        }
+        for (int i = 1; i <= 6 - j; i++)
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
+    return 0;
 }
 #endif
 
