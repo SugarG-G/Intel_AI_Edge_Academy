@@ -349,26 +349,34 @@ int main(void)
 
 #if 0
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int main(void)
 {
-	int num;
-    int temp_num = 67;
+    srand(time(NULL));
+
+    int random_number = rand() % 100 + 1;
+    int a;
+    // printf("%d",random_number);
     while(1){
         printf("정수 입력 : ");
-        scanf("%d", &num);
+        scanf("%d", &a);
 
-        if(num < temp_num){
+        if(a < random_number){
             printf("입력한 숫자보다 큽니다.\n");
         }
-        else if(num > temp_num){
+        else if(a > random_number){
             printf("입력한 숫자보다 작습니다.\n");
         }
-        else if(num == temp_num){
-            printf("정답!!\n");
+        else if (a == random_number){
+            printf("정답\n");
             break;
         }
     }
+
+	// printf("%d\n", rand() % 100 + 1);
+    // printf("%d\n", rand() % 100 + 1);
 
 	return 0;
 }
@@ -434,7 +442,7 @@ int main(void)
 // [6-14] 별찍기 응용 2
 /***********************************************************/
 
-#if 1
+#if 0
 #include <stdio.h>
 
 int main(void)
@@ -460,7 +468,7 @@ int main(void)
 // [6-15] 별찍기 응용 5
 /***********************************************************/
 
-#if 1
+#if 0
 #include <stdio.h>
 
 int main(void)

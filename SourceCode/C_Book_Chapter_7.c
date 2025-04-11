@@ -188,6 +188,7 @@ int abs(int num){
 int is_divisor(int num1, int num2);
 void print_divisors(int num);
 int get_sum_of_divisors(int num);
+int is_perfect_number(int num);
 
 int main(void)
 {
@@ -204,12 +205,26 @@ int main(void)
 	// printf("%d\n", get_sum_of_divisors(28));
 
 	//step4
+	// printf("%d\n", is_perfect_number(10));
+	// printf("%d\n", is_perfect_number(28));
 
+	//end 첫번째 완전수 6, 두번째 완전수 28, 세번째 ?, 네번째?
+	for(int i = 2; i < 1000; i++){
+		if(is_perfect_number(i))
+		printf("%d\n", i);
+	}// 세번쨰 완전수 : 496
+
+	for(int i = 1000; i < 10000; i++){
+		if(is_perfect_number(i)){
+			printf("%d\n", i);
+		}
+	}// 네번째 완전수 : 8128
 
 	return 0;
 }
 
-//완전수 구하기 step1
+//완전수 구하기 
+//step1
 int is_divisor(int num1, int num2){
 	return (num1 % num2 == 0 ? 1 : 0);
 }
@@ -218,18 +233,18 @@ int is_divisor(int num1, int num2){
 void print_divisors(int num){
 	printf("%d의 약수 : ", num);
 	for(int i = 1; i <= num / 2; i++){
-		if(num % i == 0){
+		if(is_divisor(num,i)){
 			printf("%d ", i);
 		}
 	}
 	printf("%d\n", num);
 }
 
-//step3 get_sum_of_divisors()
+//step3
 int get_sum_of_divisors(int num){
 	int result = 0;
 	for(int i = 1; i <= num / 2; i++){
-		if(num % i == 0){
+		if(is_divisor(num,i)){
 			result += i;
 		}
 	}
@@ -238,188 +253,8 @@ int get_sum_of_divisors(int num){
 }
 
 //step4
-
-
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
+int is_perfect_number(int num){
+	return num == (get_sum_of_divisors(num) - num) ? 1 : 0;
 }
-#endif
 
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
 #endif
