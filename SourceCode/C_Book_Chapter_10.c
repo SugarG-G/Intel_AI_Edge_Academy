@@ -174,13 +174,28 @@ int main(void)
 // [10-7] 배열에 값을 입력하는 함수
 /***********************************************************/
 
-#if 1
+#if 0
 #include <stdio.h>
+
+void input_array(int *pa, int size);
+void print_array(int *pa, int size);
+void find_max(int *pa, int size);
+
+int main(void)
+{
+    int array[5] = {0,};
+    
+    input_array(array, sizeof(array) / sizeof(int));
+    find_max(array, 5);
+    
+	return 0;
+}
 
 void input_array(int *pa, int size){
     for(int i = 0; i < size; i++){
         scanf("%d", &pa[i]);
     }
+    // print_array(pa, size);
 }
 
 void print_array(int *pa, int size){
@@ -190,29 +205,69 @@ void print_array(int *pa, int size){
     printf("\n");
 }
 
-int main(void)
-{
-    int array[5] = {0,};
-    
-    input_array(array, 5);
-    print_array(array, 5);
-
-	return 0;
+void find_max(int *pa, int size){
+    int max = pa[0];
+    //30 10 40 20 50
+    //10 20 30 40 50
+    for(int i = 0; i < size; i++){
+        if(max < pa[i]){
+            max = pa[i];
+        }
+    }
+    printf("%d\n", max);
 }
+
 #endif
 
 /***********************************************************/
-// [0-0] 타이틀
+// [10-도전] 로또 번호 생성 프로그램
 /***********************************************************/
 
-#if 0
+#if 1
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void print_lotto(int *pa, int size){
+    for(int i = 0; i < size; i++){
+        printf("%d ", pa[i]);
+    }
+    printf("\n");
+}
+void input_lotto(int *pa, int size){
+    srand(time(NULL));
+        
+    for(int i = 0; i < size; i++){
+        pa[i] = rand() % 45 + 1;
+        // printf("%d 번째 로또 번호 입력 : ", (i+1));
+        // scanf("%d", &pa[i]);
+    
+        for(int j = 0; j < i; j++){
+            if(pa[i] == pa[j]){
+                printf("다시 입력하세요.\n");
+                i--;
+                break;
+            }
+        }
+    }
+}
+
 
 int main(void)
 {
-	
+    int lotto[6] = {0,};
+    
+    input_lotto(lotto, 6);
+    print_lotto(lotto, 6);
+
+	// 6개의 정수를 입력(1 ~ 45)
+    // 해당 값이 이미 존재하면 다시 입력
+
 	return 0;
 }
+
+
+
 #endif
 
 /***********************************************************/
