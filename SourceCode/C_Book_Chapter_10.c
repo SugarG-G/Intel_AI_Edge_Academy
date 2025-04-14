@@ -223,7 +223,7 @@ void find_max(int *pa, int size){
 // [10-도전] 로또 번호 생성 프로그램
 /***********************************************************/
 
-#if 1
+#if 0
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -267,13 +267,206 @@ int main(void)
 	return 0;
 }
 
-
-
 #endif
 
 /***********************************************************/
-// [0-0] 타이틀
+// [10-정렬] 정렬 알고리즘
 /***********************************************************/
+
+#if 1
+#include <stdio.h>
+
+void swap(int *pa, int *pb)
+{
+    int temp;
+    temp = *pa;
+    *pa = *pb;
+    *pb = temp;
+}
+
+void print_array(int *pa, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d ", pa[i]);
+    }
+    printf("\n");
+}
+
+void bubble_sort(int *pa, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = i + 1; j < size; j++)
+        {
+            if (pa[i] > pa[j])
+            {
+                swap(&pa[i], &pa[j]);
+            }
+        }
+    }
+}
+
+// 버블 단점을 보완한 선택정렬
+// cycle당 최대 치환 1회
+void selection_sort(int *pa, int size)
+{
+    int max_index = 0;
+    int max = pa[0];
+    /*
+    // 1cycle
+    for(int i = 0; i < size; i++){
+        if(pa[i] > max){
+            max = pa[i];
+            max_index = i;
+        }
+    }
+    swap(&pa[max_index], &pa[size - 1]);
+
+    // 2cycle
+    max = pa[0];
+    max_index = 0;
+    for(int i = 0; i < size - 1; i++){
+        if(pa[i] > max){
+            max = pa[i];
+            max_index = i;
+        }
+    }
+    swap(&pa[max_index], &pa[size - 2]);
+    */
+    
+    for (int j = 0; j < size - 1; j++)
+    {
+        max = pa[0];
+        max_index = 0;
+        for (int i = 0; i < size - j; i++)
+        {
+            if (pa[i] > max)
+            {
+                max = pa[i];
+                max_index = i;
+            }
+        }
+        swap(&pa[max_index], &pa[size - (j + 1)]);
+    }
+}
+
+void binary_search(int *pa, int size, int search){
+    int low_index = 0;
+    int high_index = size - 1;
+    int mid_index = (low_index + high_index) / 2;
+
+    while(1){
+        if(pa[mid_index] > search){
+            high_index = mid_index - 1;
+            mid_index = (low_index + high_index) / 2;
+        }
+        else if(pa[mid_index] < search){
+            low_index = mid_index + 1;
+            mid_index = (low_index + high_index) / 2;
+        }
+        else{
+            printf("찾고자 하는 %d는 index %d에 있습니다.", search, mid_index);
+            break;
+        }
+    }
+}
+
+    int main(void)
+    {
+        int array[10] = {1, 32, 19, 27, 23, 20, 15, 96, 25, 37};
+        int size = sizeof(array) / sizeof(int);
+        printf("배열 원본 : ");
+        print_array(array, size);
+
+        bubble_sort(array, size);
+        printf("버블 정렬 후 : ");
+        print_array(array, size);
+
+        selection_sort(array, size);
+        printf("선택 정렬 후 : ");
+        print_array(array, size);
+
+        int search = 19;
+        binary_search(array, size, search); // 찾고자 하는 23은 4번째 있습니다.
+
+        return 0;
+    }
+#endif
+
+    /***********************************************************/
+    // [0-0] 타이틀
+    /***********************************************************/
+
+#if 0
+#include <stdio.h>
+
+int main(void)
+{
+	
+	return 0;
+}
+#endif
+
+    /***********************************************************/
+    // [0-0] 타이틀
+    /***********************************************************/
+
+#if 0
+#include <stdio.h>
+
+int main(void)
+{
+	
+	return 0;
+}
+#endif
+
+    /***********************************************************/
+    // [0-0] 타이틀
+    /***********************************************************/
+
+#if 0
+#include <stdio.h>
+
+int main(void)
+{
+	
+	return 0;
+}
+#endif
+
+    /***********************************************************/
+    // [0-0] 타이틀
+    /***********************************************************/
+
+#if 0
+#include <stdio.h>
+
+int main(void)
+{
+	
+	return 0;
+}
+#endif
+
+    /***********************************************************/
+    // [0-0] 타이틀
+    /***********************************************************/
+
+#if 0
+#include <stdio.h>
+
+int main(void)
+{
+	
+	return 0;
+}
+#endif
+
+    /***********************************************************/
+    // [0-0] 타이틀
+    /***********************************************************/
 
 #if 0
 #include <stdio.h>
