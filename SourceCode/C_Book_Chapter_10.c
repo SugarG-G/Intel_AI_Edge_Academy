@@ -234,6 +234,7 @@ void print_lotto(int *pa, int size){
     }
     printf("\n");
 }
+
 void input_lotto(int *pa, int size){
     srand(time(NULL));
         
