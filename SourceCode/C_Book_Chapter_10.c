@@ -96,55 +96,107 @@ int main(void)
 // [10-4] 포인터의 뺼셈과 관계 연산
 /***********************************************************/
 
+#if 0
+#include <stdio.h>
+
+int main(void)
+{
+    int array[5] = {10, 20, 30, 40, 50};
+    int *pa = array;
+    int *pb = array + 3;
+
+    pa++;
+    printf("pb - pa : %u\n", pb - pa);
+
+    // 두 포인터 중
+    // 더 앞에 있는 (인덱스가 작은) 요소 출력
+    if(pa < pb){
+        printf("%d\n", *pa);
+    }
+    else{
+        printf("%d\n", *pb);
+    }
+
+	return 0;
+}
+#endif
+
+/***********************************************************/
+// [10-5] 배열을 처리하는 함수
+/***********************************************************/
+
+#if 0
+#include <stdio.h>
+
+void print_array(int *pa){
+    for(int i = 0; i < 5; i++){
+        printf("%d ", pa[i]);
+    }
+}
+
+int main(void)
+{
+	int array[5] = {10, 20, 30, 40, 50};
+    print_array(array);
+
+	return 0;
+}
+#endif
+
+/***********************************************************/
+// [10-6] 크기가 다른 배열을 처리하는 함수
+/***********************************************************/
+
+#if 0
+#include <stdio.h>
+
+void print_array(int *pa, int size){
+
+    for(int i = 0; i < size; i++){
+        printf("%d ", pa[i]);
+    }
+    printf("\n");
+}
+
+int main(void)
+{
+	int array[5] = {10, 20, 30, 40, 50};
+    int array2[7] = {10, 20, 30, 40, 50, 60, 70};
+
+    print_array(array, 5);
+    print_array(array2, 7);
+
+	return 0;
+}
+#endif
+
+/***********************************************************/
+// [10-7] 배열에 값을 입력하는 함수
+/***********************************************************/
+
 #if 1
 #include <stdio.h>
 
+void input_array(int *pa, int size){
+    for(int i = 0; i < size; i++){
+        scanf("%d", &pa[i]);
+    }
+}
+
+void print_array(int *pa, int size){
+    for(int i = 0; i < size; i++){
+        printf("%d ",pa[i]);
+    }
+    printf("\n");
+}
+
 int main(void)
 {
+    int array[5] = {0,};
     
+    input_array(array, 5);
+    print_array(array, 5);
 
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
-	return 0;
-}
-#endif
-
-/***********************************************************/
-// [0-0] 타이틀
-/***********************************************************/
-
-#if 0
-#include <stdio.h>
-
-int main(void)
-{
-	
 	return 0;
 }
 #endif
