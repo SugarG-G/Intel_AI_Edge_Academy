@@ -356,7 +356,7 @@ void binary_search(int *pa, int size, int search){
     int high_index = size - 1;
     int mid_index = (low_index + high_index) / 2;
 
-    while(1){
+    while(low_index <= high_index){
         if(pa[mid_index] > search){
             high_index = mid_index - 1;
             mid_index = (low_index + high_index) / 2;
