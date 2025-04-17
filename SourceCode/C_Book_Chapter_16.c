@@ -46,7 +46,7 @@ int main(void)
 // [16-2] 연속 할당과 재할당
 /***********************************************************/
 
-#if 1
+#if 0
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -56,6 +56,7 @@ int main(void)
     printf("배열의 크기를 입력하세요 : ");
     scanf("%d", &n);
 
+    //calloc -> 초기화까지 해줌
     int *array = (int *)calloc(n, sizeof(int));
 
     if(array == NULL){
@@ -73,6 +74,23 @@ int main(void)
     for(int i = 0; i < n; i++){
         printf("%3d ", array[i]);
     }
+
+    printf("\n");
+
+    int m;
+    printf("재조정할 배열의 크기 입력 : ");
+    scanf("%d", &m);
+    array = (int *)realloc(array, m * sizeof(int));
+
+    for(int i = n; i < m; i++){
+        array[i] = count++;
+    }
+
+    for(int i = 0; i < m; i++){
+        printf("%3d ", array[i]);
+    }
+
+    free(array);
 
 	return 0;
 }

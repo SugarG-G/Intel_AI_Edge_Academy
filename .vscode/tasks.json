@@ -54,6 +54,15 @@
                 "/C", 
                 "${fileDirname}\\${fileBasenameNoExtension}"
             ]
+        },
+        {
+            "label": "execute",
+            "command": "cmd",
+            "group": "test",
+            "args": [
+                "/C", 
+                "${fileDirname}\\${fileBasenameNoExtension}"
+            ]
         }
     ],
     "version": "2.0.0"
