@@ -97,29 +97,80 @@ int main(void)
 #endif
 
 /***********************************************************/
-// [0-0] 타이틀
+// [16-4] 3개의 문자열을 저장하기 위한 동적 할당
 /***********************************************************/
 
 #if 0
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main(void)
 {
-	
+	// 3개의 문자열 입력
+    // 각 문자열의 길이 모름
+    char *str[3];
+    char temp[46] = {0,};
+    for(int i = 0; i < 3; i++){
+        gets(temp);
+        str[i] = (char *)malloc(strlen(temp) + 1);
+        if(str[i] == NULL){
+            printf("메모리 부족");
+            exit(1);
+        }
+        strcpy(str[i], temp);
+    }
+
+    for(int i = 0; i < 3; i++){
+        printf("%s ", str[i]);
+    }
+
+    for(int i = 0; i < 3; i++){
+        free(str[i]);
+    }
+
 	return 0;
 }
 #endif
 
 /***********************************************************/
-// [0-0] 타이틀
+// [16-5] 몇 개를 받아 문자열 출력
 /***********************************************************/
 
-#if 0
+#if 1
 #include <stdio.h>
+#include <stdlib.h> // malloc
+#include <string.h> // strlen, strcpy
 
 int main(void)
 {
+    //사용자가 문자열을 입력
+    // 몇개 입력할지 모름
+    // 최대 20개까지만..
+
+    char *str[21];
+    char temp[46];
+    
+    for(int i = 0; i < 20; i++){
+        printf("문자열을 입력하세요 : ");
+        gets(temp);
+        if(strcmp(temp, "end") == 0) break;
+        str[i] = (int *)malloc(strlen(temp) + 1);
+        if(str[i] == NULL) exit(1);
+        strcpy(str[i], temp);
+    }
+
+    for(int i = 0; i < 20; i++){
+        if(str[i] == NULL){
+            printf("%s\n", str[i]);
+        }
+    }
 	
+    for(int i = 0; i < 20; i++){
+        if(str[i] == NULL) break;
+        free(str[i]);
+    }
+
 	return 0;
 }
 #endif
