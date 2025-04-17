@@ -1,27 +1,79 @@
 /***********************************************************/
-// [0-0] 타이틀
+// [16-1] 동적 할당을 활용한 배열 생성
 /***********************************************************/
 
 #if 0
 #include <stdio.h>
+#include <stdlib.h> //동적 할당
 
 int main(void)
 {
-	
+    int n;
+    printf("배열의 크기를 입력하세요 : ");
+    scanf("%d", &n);
+    
+    //malloc : 동적 할당
+    //n * sizeof(int) > n개 x 4byte 만큼 할당
+    //(int *) > void 포인터를 형변환해서 사용 (malloc은 void임)
+    int *array = (int *)malloc(n * sizeof(int));
+
+    //만약 할당할 여유 공간 (메모리)가 없다면
+    if(array == NULL){
+        printf("메모리가 부족 합니다.");
+        // return -1;
+        exit(1); // 어디서든 프로그램 종료
+    }
+
+	int count = 1;
+
+    for(int i = 0; i < n; i++){
+        array[i] = count++;
+    }
+
+    for(int i = 0; i < n; i++){
+        printf("%3d ", array[i]);
+    }
+    // 동적 할당 해제
+    free(array);
+    // 하지 안으면 메모리 회수가 안됨
+    // 단, 해제한 이후 더 이상 array를 출력할 수 없다.
+
 	return 0;
 }
 #endif
 
 /***********************************************************/
-// [0-0] 타이틀
+// [16-2] 연속 할당과 재할당
 /***********************************************************/
 
-#if 0
+#if 1
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(void)
 {
-	
+    int n;
+    printf("배열의 크기를 입력하세요 : ");
+    scanf("%d", &n);
+
+    int *array = (int *)calloc(n, sizeof(int));
+
+    if(array == NULL){
+        printf("메모리가 부족 합니다.");
+        // return -1;
+        exit(1); // 어디서든 프로그램 종료
+    }
+
+	int count = 1;
+
+    for(int i = 0; i < n; i++){
+        array[i] = count++;
+    }
+
+    for(int i = 0; i < n; i++){
+        printf("%3d ", array[i]);
+    }
+
 	return 0;
 }
 #endif
