@@ -60,6 +60,7 @@
     "*.cpp": "cpp",
     "stdio.h": "c",
     "cstdlib": "c",
-    "functional": "c"
+    "functional": "c",
+    "student.h": "c"
   }
 }
