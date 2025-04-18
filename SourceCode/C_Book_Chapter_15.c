@@ -199,7 +199,7 @@ int max(int a, int b){
 	return a > b ? a : b;
 }
 
-//함수를 가르키는 함수
+//함수를 가리키는 함수
 void func(int (*fp)(int a, int b)){
 	// sum을 넘기면 fp를 sum처럼 쓸 수 있다.
 	int a = 0, b = 0;
