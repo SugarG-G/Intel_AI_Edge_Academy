@@ -226,7 +226,7 @@ int main(void)
 // [18-7] a+ 모드로 파일 내용 확인하며 출력
 /***********************************************************/
 
-#if 1
+#if 0
 #include <stdio.h>
 #include <string.h>
 
@@ -274,6 +274,127 @@ int main(void)
 
     fclose(fp); // 열었으면 닫자, 열었으면 닫자!!
     return 0;
+}
+#endif
+
+/***********************************************************/
+// [18-8] 여러 줄의 문자를 입력해 한줄로 내보내기
+/***********************************************************/
+
+#if 0
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+    // a : Hello World!!
+    // b : C CLEAR!!
+    // 2개를 e에 내보내기
+
+    const char *path_a = "D:\\Intel_AI_Edge_Acadamy\\a.txt";
+    const char *path_b = "D:\\Intel_AI_Edge_Acadamy\\b.txt";
+    const char *path_e = "D:\\Intel_AI_Edge_Acadamy\\e.txt";
+
+    FILE *fpa, *fpb, *fpe;
+
+    fpa = fopen(path_a, "r");
+    if(fpa == NULL) return 1;
+    fpb = fopen(path_b, "r");
+    if(fpb == NULL) return 2;
+    fpe = fopen(path_e, "w");
+    if(fpe == NULL) return 3;
+
+    char str[80];
+    char *ps;
+
+    while(1){
+        ps = fgets(str, strlen(str) + 1, fpa);
+        if(ps == NULL) break;
+    }
+    while(1){
+        ps = fgets(str, strlen(str) + 1, fpb);
+        if(ps == NULL) break;
+    }
+
+    while(1){
+        fputs(ps, fpe);
+        if(ps == NULL) break;
+    }
+
+    fclose(fpa);
+    fclose(fpb);
+    fclose(fpe);
+	
+	return 0;
+}
+#endif
+
+/***********************************************************/
+// [18-9] fprintf() 다양한 형식으로 내보내기
+/***********************************************************/
+
+#if 0
+#include <stdio.h>
+
+int main(void)
+{
+    FILE *fp, *fsp;
+    const char *path = "D:\\Intel_AI_Edge_Acadamy\\girlfriend.txt";
+
+    fp = fopen(path, "r");
+    if(fp == NULL) return 1;
+
+    char *path_score = "D:\\Intel_AI_Edge_Acadamy\\score.txt";
+    fsp = fopen(path_score, "w");
+    if(fsp == NULL) return 2;
+
+    char name[20];
+    int ko, en, ma;
+    double avg;
+    int sum;
+
+    int result = 0;
+    while(1){
+        result = fscanf(fp, "%s %d %d %d", name, &ko, &en, &ma);
+        if(result == EOF) break;
+        sum = ko +en + ma;
+        avg = sum / 3.0;
+
+        fprintf(fsp, "%s %d %.1lf\n", name, sum, avg);
+    }
+
+    fclose(fp);
+    fclose(fsp);
+
+	return 0;
+}
+#endif
+
+/***********************************************************/
+// [0-0] 타이틀
+/***********************************************************/
+
+#if 0
+#include <stdio.h>
+
+int main(void)
+{
+	
+	return 0;
+}
+#endif
+
+/***********************************************************/
+// [0-0] 타이틀
+/***********************************************************/
+
+#if 0
+#include <stdio.h>
+
+int main(void)
+{
+	
+	return 0;
 }
 #endif
 

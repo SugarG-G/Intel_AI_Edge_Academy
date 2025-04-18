@@ -59,6 +59,7 @@
   "files.associations": {
     "*.cpp": "cpp",
     "stdio.h": "c",
-    "cstdlib": "c"
+    "cstdlib": "c",
+    "functional": "c"
   }
 }
