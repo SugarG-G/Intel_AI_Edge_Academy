@@ -373,20 +373,38 @@ int main(void)
 // [17-12] tpyedef 사용한 자료형 재정의
 /***********************************************************/
 
-#if 1
+#if 0
 #include <stdio.h>
 
 typedef signed int t;
 
+struct student
+{
+    int num;
+    double grade;
+};
+
+typedef struct student Student;
+
+typedef struct
+{
+    char name[20];
+    int age;
+} Profile;
+
 int main(void)
 {
+    // 구조체를 재정의하면
+    // 대문자로 시작하자!!
+    Student s1 = {315, 3.7};
+    Profile p1 = {"아이유", 17};
+
     int a = 10;
     t b = 20;
 
     printf("%d %d", a, b);
 
-	
-	return 0;
+    return 0;
 }
 #endif
 
