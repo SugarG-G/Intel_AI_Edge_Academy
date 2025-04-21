@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Intel_AI_Edge_Acadamy/SourceCode",
-      "program": "d:/Intel_AI_Edge_Acadamy/SourceCode/build/Debug/outDebug",
+      "cwd": "d:/Intel_AI_Edge_Acadamy/C_Class_SourceCode",
+      "program": "d:/Intel_AI_Edge_Acadamy/C_Class_SourceCode/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
