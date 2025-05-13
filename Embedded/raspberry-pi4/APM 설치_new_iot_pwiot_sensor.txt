@@ -1,0 +1,292 @@
+실습 예제 압축 파일 : mysql_db_sensor.tar
+
+1. apache2 설치
+$ sudo apt install apache2 -y
+2. 실행 확인
+$ ps -ef | grep apache
+$ systemctl status apache2
+3. 윕브라우즈 접속 http://192.168.10.x  접속 확인
+
+4. php 설치
+$ sudo apt install php php-gd php-mysql -y
+sudo vi /var/www/html/phpinfo.php
+-------------
+<?php phpinfo(); ?>
+--------------
+5. 웹브라우즈 접속 http://192.168.10.x/phpinfo.php  접속 확인
+
+6.mysql 설치 및 확인
+$ sudo apt install mariadb-server mariadb-client -y
+$ systemctl status mariadb.service 
+
+7. 비밀번호 설정
+$ sudo mysql
+
+데이터베이스 테이블 생성 입력
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [(none)]> create database iotdb character set utf8;  //database 생성
+MariaDB [(none)]> show databases;
+
+iotdb 접근 계정 추가 ( 계정 : iot, 암호 : pwiot )
+MariaDB [(none)]>  grant all privileges on iotdb.* to iot@localhost identified by 'pwiot';
+
+참고 iot 계정으로 접속시   - 패스워드 pwiot
+ mysql -u iot -p
+
+MariaDB [(none)]> use iotdb
+Database changed
+
+MariaDB [iotdb]> create table sensor (id int not null auto_increment, name varchar(20), date date, time time,  illu int, temp float, humi float, primary key (id) ) default charset=utf8;
+Query OK, 0 rows affected (0.041 sec)
+
+
+
+MariaDB [iotdb]> show tables;            //테이블 보기
+MariaDB [iotdb]> explain sensor;	//테이블 구조확인
+
+
+MariaDB [iotdb]> drop table sensor;	//테이블 삭제
+MariaDB [(none)]> drop database iotdb; //데이터베이스 삭제
+
+
+MariaDB [iotdb]> insert into sensor (name, date, time, illu, temp, humi) value( "KSH_SQL", now(),now(), 56, 71.4, 23.6);
+MariaDB [iotdb]> select * from sensor;
++----+---------+------------+----------+------+------+------+
+| id | name    | date       | time     | illu | temp | humi |
++----+---------+------------+----------+------+------+------+
+|  1 | KSH_SQL | 2021-08-05 | 19:15:27 |   56 | 71.4 | 23.6 |
++----+---------+------------+----------+------+------+------+
+
+
+MariaDB [iotdb]> update sensor set illu=40 where id=1;	//갱신
+MariaDB [iotdb]> delete from sensor where id=1;	//삭제
+
+
+=======================================
+phpmyadmin 설치
+$ sudo apt-get install phpmyadmin -y
+ 웹서버 :  apache2 선택
+Configure database for phpmyadmin with dbconfig-common?   ==>  no
+
+ $ sudo vi /etc/apache2/apache2.conf 			//추가
+-------------------------------------------
+include include /etc/phpmyadmin/apache.conf
+------------------------------------------
+$ sudo service apache2 restart
+
+웹브라우즈 http://192.168.10.70/phpmyadmin
+사용자 : root , 비밀번호 root
+
+=======================================
+
+C  Querry
+데이터베이스 쿼리 및 추가  client 구현  
+$ sudo apt-get install libmariadb-dev-compat
+$ sudo vi /etc/mysql/mariadb.conf.d/50-server.cnf         //bind-address 주석
+-----------
+#bind-address            = 127.0.0.1			
+-----------
+$ sudo service mysql restart
+
+//local host 왜 다른 host(특정 IP)에서 접속 할 시 권한 부여
+MariaDB [(none)]>  grant all privileges on iotdb.* to iot@192.168.0.32 identified by 'pwiot';   //사용자 권한 설정, 접속할 IP 등록
+MariaDB [(none)]>  show grants for iot@192.168.0.32;			//사용자 권한 확인
+MariaDB [(none)]>  revoke all privileges on iotdb.* from iot@192.168.0.32; ;   //사용자 권한 설정, 접속할 IP 등록
+
+
+// 모든 외부 호스트 접속 허용
+MariaDB [(none)]> create user 'iot'@'%' identified by 'pwiot';   //계정 생성
+MariaDB [(none)]> grant all privileges on iotdb.* to 'iot'@'%';  //iotdb.*  iotdb를 모든 외부 ip 허용, 모든 테이블허용시 *.*
+MariaDB [(none)]> flush privileges;
+MariaDB [(none)]> select host, user, plugin, authentication_string from mysql.user;
++-----------+------+-------------+-----------------------+
+| host      | user | plugin      | authentication_string |
++-----------+------+-------------+-----------------------+
+| localhost | root | unix_socket |                       |
+| localhost | iot  |             |                       |
+| %         | iot  |             |                       |
++-----------+------+-------------+-----------------------+
+
+index.html
+---------------------------------
+<frame src = "http://192.168.1.240/sensorTable.php">
+<frame src = "http://192.168.1.240/sensorGraph.php">
+---------------------------------  
+
+============================================
+
+-교재 학생 테이블 예제 
+$ gcc iotdb.c -o iotdb -lmysqlclient	 //db 서버 주소 변경
+$ ./iotdb   
+1 KSH_SQL 2021-08-05 19:15:27 56 71.4 23.6
+
+iot 서버 클라이언트 DB 연동 업데이트
+$ ./iot_server 5000
+
+$ ./iot_client_sql 127.0.0.1 5000 KSH_SQL		//KSH_LIN 클라이언트 에서 입력
+Input a message! [ID]msg (Default ID:ALLMSG)
+MYSQL startup
+Connection Successful!
+
+[KSH_SQL] New connected! (ip:127.0.0.1,fd:4,sockcnt:1)
+[KSH_SQL]SENSOR@30@60.1@21.5                   //송신 , (실제 아두이노 센서 보드에서 전송)
+[KSH_SQL]SENSOR@30@60.1@21.5                   //수신시  DB 추가 됨
+sql_cmdinserted 1 rows			  //업데이트
+
+MariaDB [iotdb]> select * from sensor;		//업데이트 확인 OK
++----+---------+------------+----------+------+------+------+
+| id | name    | date       | time     | illu | temp | humi |
++----+---------+------------+----------+------+------+------+
+|  1 | KSH_SQL | 2021-08-05 | 19:15:27 |   56 | 71.4 | 23.6 |
+|  2 | KSH_SQL | 2021-08-05 | 22:25:20 |   30 | 60.1 | 21.5 |
++----+---------+------------+----------+------+------+------+
+
+
+외부 데이터 베이스 접속
+
+
+php 구글 그래프 그리기 테스트 
+예제 디렉토리 html의 파일을  /var/www/html 복사
+
+웹브라우즈로 라즈베리파이 주소 접속
+
+
+============== 사용자 계정 패스워드 권한 설정 등 ================ 참고
+
+MariaDB [(none)]> use mysql
+MariaDB [mysql]> update user set password=password('root') where user='root';
+MariaDB [mysql]> flush privileges;
+
+MariaDB [mysql]> select user, host, password from user;
++------+-----------+-------------------------------------------+
+| user | host      | password                                  |
++------+-----------+-------------------------------------------+
+| root | localhost | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B |
++------+-----------+-------------------------------------------+
+
+MariaDB [mysql]> exit;
+
+============================= 일반 사용자 접속======= sudo 실행안함 오류발생===
+MariaDB [(none)]> use mysql        
+MariaDB [mysql]> select user, host, password from user;    //계정 정보 확인
++------+-----------+----------+
+| user | host      | password |
++------+-----------+----------+
+| root | localhost |          |
++------+-----------+----------+
+
+=============================
+pi@raspberry00:~/iot $ mysql -u root
+ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+pi@raspberry00:~/iot $ sudo mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 42
+Server version: 10.3.29-MariaDB-0+deb10u1 Raspbian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use mysql
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [mysql]> SELECT User, Host, plugin FROM mysql.user;
++------+-----------+-------------+
+| User | Host      | plugin      |
++------+-----------+-------------+
+| root | localhost | unix_socket |
++------+-----------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [mysql]> update user set plugin='mysql_native_password' where user='root';
+Query OK, 1 row affected (0.001 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mysql]> flush privileges;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mysql]>  select user, host, plugin from user;
++------+-----------+-----------------------+
+| user | host      | plugin                |
++------+-----------+-----------------------+
+| root | localhost | mysql_native_password |
++------+-----------+-----------------------+
+1 row in set (0.001 sec)
+
+MariaDB [mysql]> exit
+Bye
+pi@raspberry00:~/iot $ mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 43
+Server version: 10.3.29-MariaDB-0+deb10u1 Raspbian 10
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]>
+=============================OK=========================
+
+
+
+============= 응용 실습 ============
+
+MariaDB [iotdb]> create table device (id int not null, name varchar(20), date date, time time,  value int, info varchar(20), primary key (id) ) default charset=utf8;
+MariaDB [iotdb]> explain device
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| date  | date        | YES  |     | NULL    |       |
+| time  | time        | YES  |     | NULL    |       |
+| value | int(11)     | YES  |     | NULL    |       |
+| info  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+MariaDB [iotdb]> drop table device;
+MariaDB [iotdb]> show tables;
+
+MariaDB [iotdb]> insert into device (id, name, date, time, value, info) value( 1, "LAMP", now(),now(), 0, "room1 lamp1");
+MariaDB [iotdb]> select * from device;
+
++----+------+------------+----------+-------+-------------+
+| id | name | date       | time     | value | info        |
++----+------+------------+----------+-------+-------------+
+|  1 | LAMP | 2023-05-28 | 14:48:58 |     0 | room1 lamp1 |
++----+------+------------+----------+-------+-------------+
+
+MariaDB [iotdb]> insert into device (id, name, date, time, value, info) value( 2, "PLUG", now(),now(), 0, "room1 plug1");
+MariaDB [iotdb]>  select * from device;
++----+------+------------+----------+-------+-------------+
+| id | name | date       | time     | value | info        |
++----+------+------------+----------+-------+-------------+
+|  1 | LAMP | 2023-05-28 | 14:48:58 |     0 | room1 lamp1 |
+|  2 | PLUG | 2023-05-28 | 14:50:42 |     0 | room1 plug1 |
++----+------+------------+----------+-------+-------------+
+
+
+MariaDB [iotdb]> update device set value=1 where name="LAMP";	//갱신
+MariaDB [iotdb]> update device set value=1 where id=1;				//갱신
+
+MariaDB [iotdb]> delete from device where name="LAMP";	//삭제
+MariaDB [iotdb]> delete from device where id=1;					//삭제
+
+MariaDB [iotdb]> select value from device where name="LAMP"; //lamp 의밸류값 검색 
++-------+
+| value |
++-------+
+|     0 |
++-------+
