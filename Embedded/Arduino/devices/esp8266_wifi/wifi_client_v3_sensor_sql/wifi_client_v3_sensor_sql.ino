@@ -138,7 +138,8 @@ void socketEvent() {
     } else if (!strcmp(pArray[2], "OFF")) {
       digitalWrite(LED_TEST_PIN, LOW);
     }
-    sprintf(sendBuf, "[%s]%s@%s\n", pArray[0], pArray[1], pArray[2]);
+    // sprintf(sendBuf, "[%s]%s@%s\n", pArray[0], pArray[1], pArray[2]);
+    sprintf(sendBuf, "[%s]%s@%s@%s@%s\n", "CHI_SQL", "SETDB", pArray[1], pArray[2], pArray[0]);
   } else if (!strcmp(pArray[1], "GETSTATE")) {
     if (!strcmp(pArray[2], "DEV")) {
       sprintf(sendBuf, "[%s]DEV@%s@%s\n", pArray[0], digitalRead(LED_BUILTIN_PIN) ? "ON" : "OFF", digitalRead(LED_TEST_PIN) ? "ON" : "OFF");

@@ -80,6 +80,10 @@ void setup() {
   pinMode(LED_LAMP_PIN, OUTPUT);     // LED 핀을 출력으로 설정
   pinMode(LED_BUILTIN_PIN, OUTPUT);  //D13
 
+  myservo.attach(SERVO_PIN);
+  myservo.write(0);
+  myservoTime = secCount;
+
 #ifdef DEBUG
   Serial.begin(115200);  //DEBUG
 #endif
@@ -88,9 +92,7 @@ void setup() {
   MsTimer2::set(1000, timerIsr);  // 1000ms period
   MsTimer2::start();
 
-  myservo.attach(SERVO_PIN);
-  myservo.write(0);
-  myservoTime = secCount;
+
   dht.begin();
 }
 
