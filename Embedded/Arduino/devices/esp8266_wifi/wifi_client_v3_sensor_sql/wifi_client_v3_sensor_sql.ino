@@ -69,14 +69,12 @@ void loop() {
       if (!client.connected()) {
         server_Connect();
       }
-    }
-    if (!(secCount % sql_time)) {
-      client.flush();
+
       cds = analogRead(CDS_PIN);
       cds = map(cds, 0, 1023, 0, 100);
       humi = dht.readHumidity();
       temp = dht.readTemperature();
-#ifdef DEBUG
+#if 0
       Serial.print("cds : ");
       Serial.print(cds);
       Serial.print(", temp : ");
@@ -84,6 +82,8 @@ void loop() {
       Serial.print(", humi : ");
       Serial.println(humi);
 #endif
+    }
+    if (!(secCount % sql_time)) {
       char tempStr[5];
       char humiStr[5];
       dtostrf(humi, 4, 1, humiStr);  //50.0   4:전체자리수,1:소수이하 자리수
