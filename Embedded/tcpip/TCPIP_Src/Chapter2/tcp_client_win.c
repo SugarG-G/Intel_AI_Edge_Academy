@@ -5,6 +5,7 @@ void ErrorHandling(char* message);
 
 int main(int argc, char* argv[])
 {
+	int a;
 	WSADATA wsaData;
 	SOCKET hSocket;
 	SOCKADDR_IN servAddr;

@@ -1,0 +1,37 @@
+$ cat /sys/kernel/debug/gpio		//GPIO06 번호 확인
+$ gpiochip0: GPIOs 512-569, parent: platform/fe200000.gpio, pinctrl-bcm2711:
+ gpio-518 (GPIO6               )
+ gpio-519 (GPIO7               )
+ gpio-520 (GPIO8               |sysfs               ) out lo
+ gpio-521 (GPIO9               )
+ gpio-522 (GPIO10              )
+ gpio-523 (GPIO11              )
+ gpio-524 (GPIO12              )
+ gpio-525 (GPIO13              )
+ gpio-526 (GPIO14              )
+ gpio-527 (GPIO15              )
+ gpio-528 (GPIO16              )
+ gpio-529 (GPIO17              )
+ gpio-530 (GPIO18              )
+ gpio-531 (GPIO19              )
+ gpio-532 (GPIO20              )
+ gpio-533 (GPIO21              )
+ gpio-534 (GPIO22              )
+ gpio-535 (GPIO23              )
+
+
+
+echo 518 > /sys/class/gpio/export
+
+$ ls -l /sys/class/gpio           //gpio530 생성 확인
+total 0
+--w--w---- 1 root gpio 4096 Apr 23 14:51 export
+lrwxrwxrwx 1 root root    0 Apr 23 14:48 gpio530 -> ../../devices/platform/soc/fe200000.gpio/gpiochip0/gpio/gpio518
+
+$ echo out > /sys/class/gpio/gpio518/direction
+
+$ echo 1 > /sys/class/gpio/gpio518/value
+
+$ echo 0 > /sys/class/gpio/gpio518/value
+
+$ echo 518 > /sys/class/gpio/unexport
