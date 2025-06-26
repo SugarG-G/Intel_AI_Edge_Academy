@@ -1,0 +1,20 @@
+================ Raspberry Pi  Qt 설치================
+pi@pi00:~ $  sudo apt install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
+pi@pi00:~ $  qmake --version
+QMake version 3.1
+Using Qt version 5.15.8 in /usr/lib/arm-linux-gnueabihf
+
+기존 예제  tetrix  복사 ( ubuntu에서 라즈베리파이 복사)
+ubuntu@ubuntu00:$ mkdir /srv/nfs/Qt 
+ubuntu@ubuntu00:$ cp -r /mnt/lect_nfs/Qt/tetrix /srv/nfs/Qt/.   : ubuntu에서  라즈베리파이 공유하기 위해  NFS 복사
+
+리즈베리파이에서 
+$ cd /mnt/ubuntu_nfs/Qt/tetrix
+pi@pi00:/mnt/ubuntu_nfs/Qt/tetrix $ qmake -project     : tetrix.pro 생성
+pi@pi00:/mnt/ubuntu_nfs/Qt/tetrix $ vi tetrix.pro          : 아래 모듈 추가 저장 
+------------------
+5 QT += widgets
+------------------
+
+pi@pi00:/mnt/ubuntu_nfs/Qt/tetrix $ qmake		:  Makefile 생성
+pi@pi00:/mnt/ubuntu_nfs/Qt/tetrix $ make
