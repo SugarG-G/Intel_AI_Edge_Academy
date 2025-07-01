@@ -30,4 +30,6 @@ int main()
     Circle &refc = circle;
     refc.setRadius(10);
     cout << refc.getArea() << " " << circle.getArea() << endl;
+
+    cout << &circle << endl << &refc << endl;
 }
