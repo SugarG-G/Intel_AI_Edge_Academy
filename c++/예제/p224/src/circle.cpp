@@ -3,11 +3,6 @@
 
 using namespace std;
 
-Circle::Circle()
-{
-    radius = 1;
-    cout << "생성자 실행 radius = " << radius << endl;
-}
 Circle::Circle(const Circle &c)
 {
     this->radius = c.radius;

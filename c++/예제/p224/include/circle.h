@@ -8,9 +8,8 @@ private:
     int radius;
 
 public:
-    Circle();
     Circle(const Circle &c);
-    Circle(int r);
+    Circle(int radius = 1);
     ~Circle();
     void setRadius(int r) { radius = r; }
     int getRadius() { return radius; }

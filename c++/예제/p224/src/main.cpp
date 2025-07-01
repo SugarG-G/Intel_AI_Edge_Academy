@@ -61,6 +61,7 @@ int main()
     // readRadius(donut);
     // cout << "donut의 면적 = " << donut.getArea() << endl;
 
+    // 예제 5-9
     Circle src(30);
     Circle dest(src);
 
