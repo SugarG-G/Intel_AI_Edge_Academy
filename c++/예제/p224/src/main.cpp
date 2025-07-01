@@ -57,8 +57,14 @@ int main()
 
     // cout << &circle << endl << &refc << endl;
 
-    Circle donut;
-    readRadius(donut);
-    cout << "donut의 면적 = " << donut.getArea() << endl;
+    // Circle donut;
+    // readRadius(donut);
+    // cout << "donut의 면적 = " << donut.getArea() << endl;
+
+    Circle src(30);
+    Circle dest(src);
+
+    cout << "원본의 면적 = " << src.getArea() << endl;
+    cout << "사본의 면적 = " << dest.getArea() << endl;
     return 0;
 }

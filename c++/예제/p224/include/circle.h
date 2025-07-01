@@ -9,6 +9,7 @@ private:
 
 public:
     Circle();
+    Circle(const Circle &c);
     Circle(int r);
     ~Circle();
     void setRadius(int r) { radius = r; }
