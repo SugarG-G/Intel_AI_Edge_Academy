@@ -12,5 +12,21 @@ int main()
     int startIndex = 0;
     while (1)
     {
+        int fIndex = s.find('+', startIndex);
+        if (fIndex == -1)
+        {
+            string part = s.substr(startIndex);
+            cout << part << endl;
+            sum += stoi(part);
+            break;
+        }
+        int count = fIndex - startIndex;
+        string part = s.substr(startIndex, count);
+
+        cout << part << endl;
+        sum += stoi(part);
+        startIndex = fIndex + 1;
     }
+    cout << "숫자들의 합은 " << sum << endl;
+    return 0;
 }
