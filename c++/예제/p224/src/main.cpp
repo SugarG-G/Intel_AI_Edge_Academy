@@ -21,8 +21,13 @@ int main()
     // increase(waffle);
     // cout << waffle.getRadius() << endl;
 
-    Circle c;
-    cout << c.getArea() << endl;
-    c = getCircle();
-    cout << c.getArea() << endl;
+    // Circle c;
+    // cout << c.getArea() << endl;
+    // c = getCircle();
+    // cout << c.getArea() << endl;
+
+    Circle circle;
+    Circle &refc = circle;
+    refc.setRadius(10);
+    cout << refc.getArea() << " " << circle.getArea() << endl;
 }
