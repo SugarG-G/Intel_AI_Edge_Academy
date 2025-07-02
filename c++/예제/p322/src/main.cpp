@@ -17,6 +17,7 @@ public:
         this->height = height;
     }
     friend bool equals(Rect r, Rect s);
+    // bool equals(Rect r, Rect s);
 };
 
 bool equals(Rect r, Rect s)
