@@ -15,15 +15,10 @@ public:
         this->punch = punch;
     }
     // 복사 생성자
-    // Power(const Power &p)
-    // {
-    //     cout << "복사 생성자 호출, " << "kick = " << p.kick << " punch = " << p.punch << endl;
-    //     this->kick = p.kick;
-    //     this->punch = p.punch;
-    // }
+    Power(const Power &p);
     void show();
     // Power operator+(Power op2);
-    Power operator+(Power &op2);
+    Power operator+(const Power &op2);
 };
 
 void Power::show()
@@ -31,6 +26,12 @@ void Power::show()
     cout << "kick = " << kick << ',' << "punch = " << punch << endl;
 }
 
+Power::Power(const Power &p)
+{
+    cout << "복사 생성자 호출, " << "kick = " << p.kick << " punch = " << p.punch << endl;
+    this->kick = kick;
+    this->punch = punch;
+}
 // Power Power::operator+(Power op2)
 // {
 //     Power tmp;
@@ -41,7 +42,7 @@ void Power::show()
 // }
 
 // 참조 타입으로 구현
-Power Power::operator+(Power &op2)
+Power Power::operator+(const Power &op2)
 {
     Power tmp;
     tmp.kick = this->kick + op2.kick;
