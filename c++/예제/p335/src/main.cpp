@@ -89,7 +89,7 @@ int main()
     // 응용
     c = c + 2;
     c.show();
-
+    cout << endl;
     // 예제 7-5
     Power d(3, 5), e(3, 5);
     d.show();
