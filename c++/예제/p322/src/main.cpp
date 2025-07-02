@@ -10,6 +10,7 @@ class RectManager
 {
 public:
     bool equals(Rect r, Rect s);
+    void copy(Rect &dest, Rect &src); // 예제 7-3
 };
 
 class Rect
@@ -25,7 +26,8 @@ public:
     }
     // friend bool equals(Rect r, Rect s); // 예제 7-1
     // bool equals(Rect r, Rect s); // 테스트
-    friend bool RectManager::equals(Rect r, Rect s); // 예제 7-2
+    // friend bool RectManager::equals(Rect r, Rect s); // 예제 7-2
+    friend RectManager; // 예제 7-3
 };
 
 // 예제 7-1
@@ -52,6 +54,13 @@ bool RectManager::equals(Rect r, Rect s)
     {
         return false;
     }
+}
+
+// 예제 7-3
+void RectManager::copy(Rect &dest, Rect &src)
+{
+    dest.width = src.width;
+    dest.height = src.height;
 }
 
 int main()
