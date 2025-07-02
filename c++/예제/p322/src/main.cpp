@@ -78,6 +78,17 @@ int main()
 
     // 예제 7-2
     RectManager man;
+    // if (man.equals(a, b))
+    // {
+    //     cout << "equal" << endl;
+    // }
+    // else
+    // {
+    //     cout << "not equal" << endl;
+    // }
+
+    // 예제 7-3
+    man.copy(b, a);
     if (man.equals(a, b))
     {
         cout << "equal" << endl;
