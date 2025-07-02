@@ -19,6 +19,7 @@ public:
     void show();
     // Power operator+(Power op2);
     Power operator+(const Power &op2);
+    Power operator+(const int &a); // 응
 };
 
 void Power::show()
@@ -50,6 +51,18 @@ Power Power::operator+(const Power &op2)
 
     return tmp;
 }
+// 응용
+Power Power::operator+(const int &a)
+{
+    // cout << "a : " << a;
+    cout << "this->kick : " << this->kick;
+    cout << " this->punch : " << this->punch << endl;
+    Power tmp;
+    tmp.kick = this->kick + a;
+    tmp.punch = this->punch + a;
+
+    return tmp;
+}
 
 int main()
 {
@@ -57,5 +70,9 @@ int main()
     c = a + b;
     a.show();
     b.show();
+    c.show();
+
+    // 응용
+    c = c + 2;
     c.show();
 }
