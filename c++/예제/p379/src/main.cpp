@@ -5,7 +5,7 @@ using namespace std;
 
 class Point
 {
-private:
+protected: // 상속 관계에서는 접근가능
     int x, y;
 
 public:
@@ -25,12 +25,18 @@ private:
 public:
     void setColor(string color) { this->color = color; }
     void showColorPoint();
+    void showPoint(); // 재정의
 };
 
 void ColorPoint::showColorPoint()
 {
     cout << color << ":";
     showPoint();
+}
+
+void ColorPoint::showPoint() // 재정의
+{
+    cout << "재정의 " << "(" << x << "," << y << ")" << endl;
 }
 
 int main()
