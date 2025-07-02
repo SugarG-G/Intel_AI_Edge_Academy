@@ -14,6 +14,13 @@ public:
         this->kick = kick;
         this->punch = punch;
     }
+    // 복사 생성자
+    Power(const Power &p)
+    {
+        cout << "복사 생성자 호출, " << "kick = " << p.kick << " punch = " << p.punch << endl;
+        this->kick = p.kick;
+        this->punch = p.punch;
+    }
     void show();
     Power operator+(Power op2);
 };
