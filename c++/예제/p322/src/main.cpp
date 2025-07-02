@@ -3,7 +3,7 @@
 using namespace std;
 
 class Rect;
-bool equals(Rect r, Rect s);
+// bool equals(Rect r, Rect s); //예제 7-1
 
 // 예제 7-2
 class RectManager
