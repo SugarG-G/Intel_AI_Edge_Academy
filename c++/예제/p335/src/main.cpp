@@ -18,9 +18,10 @@ public:
     Power(const Power &p);
     void show();
     // Power operator+(Power op2);
-    Power operator+(const Power &op2);
+    Power operator+(const Power &op2); // 예제 7-4
     Power operator+(int a);            // 응용
     bool operator==(const Power &op2); // 예제 7-5
+    Power &operator+=(Power &op2);     // 예제 7-6
 };
 
 void Power::show()
@@ -34,11 +35,12 @@ Power::Power(const Power &p)
     this->kick = kick;
     this->punch = punch;
 }
-// Power Power::operator+(Power op2)
-// {
-//     Power tmp;
-//     tmp.kick = this->kick + op2.kick;
-//     tmp.punch = this->punch + op2.punch;
+// 예제 7-4
+//  Power Power::operator+(Power op2)
+//  {
+//      Power tmp;
+//      tmp.kick = this->kick + op2.kick;
+//      tmp.punch = this->punch + op2.punch;
 
 //     return tmp;
 // }
@@ -78,6 +80,14 @@ bool Power::operator==(const Power &op2)
     }
 }
 
+// 예제 7-6
+Power &Power::operator+=(Power &op2)
+{
+    this->kick = this->kick + op2.kick;
+    this->punch = this->punch + op2.punch;
+    return *this;
+}
+
 int main()
 {
     Power a(3, 5), b(4, 6), c;
@@ -90,6 +100,7 @@ int main()
     c = c + 2;
     c.show();
     cout << endl;
+
     // 예제 7-5
     Power d(3, 5), e(3, 5);
     d.show();
@@ -102,4 +113,12 @@ int main()
     {
         cout << "not equal" << endl;
     }
+    cout << endl;
+    // 예제 7-6
+    Power f(3, 5), g(4, 6);
+    f.show();
+    g.show();
+    c = a += b;
+    a.show();
+    c.show();
 }
