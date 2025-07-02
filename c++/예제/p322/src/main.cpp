@@ -57,6 +57,7 @@ bool RectManager::equals(Rect r, Rect s)
 int main()
 {
     Rect a(3, 4), b(4, 5);
+    // 예제 7-1
     // if (equals(a, b))
     // {
     //     cout << "equal" << endl;
