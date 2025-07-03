@@ -55,10 +55,6 @@ int main()
     pBase->set(3, 4);
     pBase->showPoint();
 
-    // Point &pRef = cp;
-    // pRef.set(6, 7);
-    // pRef.showPoint();
-
     pDer = (ColorPoint *)pBase; // 다운 캐스팅
     pDer->setColor("Red");
     pDer->showColorPoint();
