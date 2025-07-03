@@ -4,13 +4,15 @@ using namespace std;
 class Base
 {
 public:
-    virtual void f() { cout << "Base::f() called" << endl; }
+    // void f() { cout << "Base::f() called" << endl; } // 재정의
+    virtual void f() { cout << "Base::f() called" << endl; } // 오버라이딩
 };
 
 class Derived : public Base
 {
 public:
-    virtual void f() { cout << "Derived::f() called" << endl; }
+    // void f() { cout << "Base::f() called" << endl; }    // 재정의
+    virtual void f() { cout << "Derived::f() called" << endl; } // 오버라이딩
 };
 
 int main()
