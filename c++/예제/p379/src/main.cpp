@@ -42,8 +42,24 @@ void ColorPoint::showPoint() // 재정의
 int main()
 {
     // Point p;
+    // ColorPoint cp;
+    // cp.set(3, 4);
+    // cp.setColor("Red");
+    // cp.showColorPoint();
+
+    // 업 캐스팅 예제
     ColorPoint cp;
-    cp.set(3, 4);
-    cp.setColor("Red");
-    cp.showColorPoint();
+    ColorPoint *pDer = &cp;
+
+    Point *pBase = pDer; // <- 업캐스팅, Point *pBase = (Point *)pDer;
+    pBase->set(3, 4);
+    pBase->showPoint();
+
+    // Point &pRef = cp;
+    // pRef.set(6, 7);
+    // pRef.showPoint();
+
+    pDer = (ColorPoint *)pBase; // 다운 캐스팅
+    pDer->setColor("Red");
+    pDer->showColorPoint();
 }
