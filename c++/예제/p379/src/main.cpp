@@ -15,6 +15,11 @@ public:
         this->x = x;
         this->y = y;
     }
+    void get(int &a, int &b)
+    {
+        a = x;
+        b = y;
+    }
     void showPoint() { cout << "(" << x << "," << y << ")" << endl; }
     virtual void drivedShow()
     {
