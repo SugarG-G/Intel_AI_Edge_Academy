@@ -4,3 +4,5 @@ build/
 .clang-format
 *.bat
 MakeFile
+*.vcxpro*
+CMakeLists.txt
