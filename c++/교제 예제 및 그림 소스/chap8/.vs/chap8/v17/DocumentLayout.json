@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{534D92C5-40A4-4D7E-8474-D6773D2AC3DD}|\uADF8\uB9BC 8-21\\\uADF8\uB9BC 8-21.vcxproj|C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uADF8\uB9BC 8-21\\fig8-21-VirtualInheritance.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{534D92C5-40A4-4D7E-8474-D6773D2AC3DD}|\uADF8\uB9BC 8-21\\\uADF8\uB9BC 8-21.vcxproj|solutionrelative:\uADF8\uB9BC 8-21\\fig8-21-VirtualInheritance.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5707AC88-DD40-44FD-98C4-6189756A4FB2}|\uC608\uC81C 8-4\\\uC608\uC81C 8-4.vcxproj|C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uC608\uC81C 8-4\\ex8-4-privateInheritance.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5707AC88-DD40-44FD-98C4-6189756A4FB2}|\uC608\uC81C 8-4\\\uC608\uC81C 8-4.vcxproj|solutionrelative:\uC608\uC81C 8-4\\ex8-4-privateInheritance.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{018DAC06-5134-4789-A47E-52DE731EA1A3}|\uC608\uC81C 8-3\\\uC608\uC81C 8-3.vcxproj|C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uC608\uC81C 8-3\\ex8-3-SmartTV.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{018DAC06-5134-4789-A47E-52DE731EA1A3}|\uC608\uC81C 8-3\\\uC608\uC81C 8-3.vcxproj|solutionrelative:\uC608\uC81C 8-3\\ex8-3-SmartTV.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A783B14C-F130-45C1-9868-7E58FFCAAE64}|\uC608\uC81C 8-1\\\uC608\uC81C 8-1.vcxproj|C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uC608\uC81C 8-1\\ex8-1-ColorPoint.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A783B14C-F130-45C1-9868-7E58FFCAAE64}|\uC608\uC81C 8-1\\\uC608\uC81C 8-1.vcxproj|solutionrelative:\uC608\uC81C 8-1\\ex8-1-ColorPoint.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "fig8-21-VirtualInheritance.cpp",
+              "DocumentMoniker": "C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uADF8\uB9BC 8-21\\fig8-21-VirtualInheritance.cpp",
+              "RelativeDocumentMoniker": "\uADF8\uB9BC 8-21\\fig8-21-VirtualInheritance.cpp",
+              "ToolTip": "C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uADF8\uB9BC 8-21\\fig8-21-VirtualInheritance.cpp",
+              "RelativeToolTip": "\uADF8\uB9BC 8-21\\fig8-21-VirtualInheritance.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-03T05:40:14.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ex8-3-SmartTV.cpp",
+              "DocumentMoniker": "C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uC608\uC81C 8-3\\ex8-3-SmartTV.cpp",
+              "RelativeDocumentMoniker": "\uC608\uC81C 8-3\\ex8-3-SmartTV.cpp",
+              "ToolTip": "C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uC608\uC81C 8-3\\ex8-3-SmartTV.cpp",
+              "RelativeToolTip": "\uC608\uC81C 8-3\\ex8-3-SmartTV.cpp",
+              "ViewState": "AgIAAA8AAAAAAAAAAADwvxYAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-03T03:43:16.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ex8-4-privateInheritance.cpp",
+              "DocumentMoniker": "C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uC608\uC81C 8-4\\ex8-4-privateInheritance.cpp",
+              "RelativeDocumentMoniker": "\uC608\uC81C 8-4\\ex8-4-privateInheritance.cpp",
+              "ToolTip": "C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uC608\uC81C 8-4\\ex8-4-privateInheritance.cpp",
+              "RelativeToolTip": "\uC608\uC81C 8-4\\ex8-4-privateInheritance.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-03T03:43:10.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ex8-1-ColorPoint.cpp",
+              "DocumentMoniker": "C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uC608\uC81C 8-1\\ex8-1-ColorPoint.cpp",
+              "RelativeDocumentMoniker": "\uC608\uC81C 8-1\\ex8-1-ColorPoint.cpp",
+              "ToolTip": "C:\\Users\\STC\\Desktop\\chi\\\uC608\uC81C \uBC0F \uADF8\uB9BC \uC18C\uC2A4\\chap8\\\uC608\uC81C 8-1\\ex8-1-ColorPoint.cpp",
+              "RelativeToolTip": "\uC608\uC81C 8-1\\ex8-1-ColorPoint.cpp",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-03T00:22:30.007Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
