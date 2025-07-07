@@ -19,7 +19,7 @@ public:
     friend ostream &operator<<(ostream &stream, Book b);
 };
 
-ostream &operator<<(ostream &stream, Book b)
+ostream &operator<<(ostream &stream, const Book b)
 {
     stream << b.title << "," << b.press << "," << b.author;
     return stream;
