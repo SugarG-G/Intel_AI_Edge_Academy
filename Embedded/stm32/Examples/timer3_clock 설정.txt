@@ -1,3 +1,0 @@
-Prescaler = (APB1 timer clock / Timer Counter Clock ) - 1  = ( 84MHz / 1MHz ) -1  = 84 - 1
-Counter Period = ( Timer Counter Clock / Output Clock ) -1 = ( 1MHz / 1KHz ) -1 = 1000 - 1 = 999
-pluse(pwm) = (Counter Period + 1) x  (duty ratio / 100 ) 
