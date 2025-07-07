@@ -8,3 +8,4 @@ MakeFile
 *.vcxproj.*
 CMakeLists.txt
 .vs/
+x64/
