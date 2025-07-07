@@ -7,3 +7,4 @@ MakeFile
 *.vcxproj
 *.vcxproj.*
 CMakeLists.txt
+.vs/
