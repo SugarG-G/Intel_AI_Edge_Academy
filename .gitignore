@@ -1,0 +1,9 @@
+.vscode/
+*.exe
+build/
+.clang-format
+*.bat
+MakeFile
+*.vcxproj
+*.vcxproj.*
+CMakeLists.txt

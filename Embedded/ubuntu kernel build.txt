@@ -1,0 +1,18 @@
+-. Ubuntu 22.04 Host 커널 빌드 (HDD 약28GB 필요)
+https://www.kernel.org  		//현재버젼 Kernel: 6.8.0, 설치버전 6.12.24 
+$ uname -a                         //현재 커널 버전 확인
+$ mkdir ~/kernel_ubuntu ; cd kernel_ubuntu
+$ wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.24.tar.xz //커널 다운로드
+$ tar xvf linux-6.12.24.tar.xz	  //압축해제
+$ cd linux-6.12.24
+$ sudo apt install build-essential dwarves python3 libncurses-dev flex bison libssl-dev bc libelf-dev zstd gnupg2			//필요 패키지 설치
+$ cp -v /boot/config-$(uname -r) .config	//기존 빌드 환경 파일 복사
+$ scripts/config --disable SYSTEM_REVOCATION_KEYS	//빌드오류 옵션 제거
+$ scripts/config --disable SYSTEM_TRUSTED_KEYS		//빌드오류 옵션 제거
+$ make menuconfig	
+$ make bzImage –j4 ; make modules -j4       //kernel : 20분, modules :58분 (modules = device driver를 빌드) (-j4 : 하드웨어 자원 선택 명령어)
+$ sudo find . -name *.ko -exec strip --strip-unneeded {} \;	//위치 심볼 제거
+$ sudo make modules_install ; sudo make install
+$ sudo reboot                        //재부팅시 필요시 ESC키 grub 부트로드 메뉴 
+$ uname  -a                         //커널 버전 및 빌드 시간 확인 업그레이드완료 
+     Linux ubuntu00 6.12.24 #1 SMP PREEMPT_DYNAMIC Fri Apr 25 12:49:50 KST 2025 x86_64 x86_64 x86_64 GNU/Linux

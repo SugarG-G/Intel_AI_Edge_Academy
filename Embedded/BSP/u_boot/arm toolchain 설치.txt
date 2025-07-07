@@ -1,0 +1,5 @@
+$ sudo apt-get install gawk git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python-setuptools python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev xterm rsync curl zstd lz4 bison flex libssl-dev libgnutls28-dev
+
+$ sudo apt install crossbuild-essential-armhf 	//arm 32bit 툴체인 설치
+
+

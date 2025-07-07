@@ -1,0 +1,50 @@
+1.sd 리더기에 32Gb sd카드 삽입 후 PC USB 연결
+2.https://downloads.raspberrypi.org/imager/imager_latest.exe   
+  다운로드 및 설치 / 실행
+3.장치선택 ==> RASPBERRY PI 4
+  운영체제 ==> RASPBERRY PI OS(32-BIT)
+    저장소 선택 ==> Mass Storage evice USB - 31.9GB 선택 후 다음 
+4.OS 커스터마이징 설정을 적용하시겠습니까? 
+    ==> 설정을 편집하기
+  -.  메뉴 일반
+   hostname 설정 : piXX     (XX : 01~20)
+  사용자 이름 : pi
+    비밀번호 : raspberry
+    무선 LAN SSID : iot0
+  비밀번호 : iot00000
+    무선 LAN국가 : GB
+    시간대 : Asia/Seoul
+    기보드 레이아웃 : us
+ -. 서비스 
+    SSH 사용 체크/비밀번호 인증사용
+ 저장 ==> 예 ==> 계속하시겠습니까 ? ==> 예
+
+5.sd카드 라즈베리파이 연결, 이더넷 케이블 연결 후 아답터 전원 연결
+6.login : pi
+  passwd : raspberry
+
+7.라즈베리파이 설정
+ $ sudo raspi-config
+   3 Interface Options -> I2 VNC ->  enabled
+   5 Localisation Options -> L1 Locale  --> [*] ko_KR.UTF-8 UTF-8 , Default Locale en_GB.UTF-8
+			  -> L2 Timezone  -> Asia Seoul
+   Finish 후 
+   $sudo reboot
+8. VNC 접속 후 고정 IP 설정
+   윈도우즈 VNC-Viewer-7.10.0-Windows.exe 설치 후 ethernet 고정 IP 설정
+
+9. $ifconfig	#ethernet ip/wifi ip 확인
+
+10. putty 변경된 고정 IP 접속 확인
+
+11. 한글 폰트 설치 후 웹브라우즈 한글 표시 확인
+   $ sudo apt update
+   $ sudo apt install ibus ibus-hangul fonts-unfonts-core fcitx fcitx-hangul
+
+12. apt update
+$ sudo ln -s /usr/share/keyrings/raspbian-archive-keyring.gpg /etc/apt/trusted.gpg.d/raspbian-archive-keyring.gpg
+$ sudo rm /etc/apt/trusted.gpg
+$ sudo apt update
+
+13. samba / NFS 설치
+     첨부 파일 참조
