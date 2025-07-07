@@ -8,13 +8,13 @@ int main()
 {
     map<string, string> dic;
 
-    /// pair 클래스///
-    pair<int, int> p = {2, 3}; // 선언과 동시에 초기화
+    /// pair 템플릿 클래스///
+    pair<int, int> p = {2, 3}; // 선언과 동시에 초기화 방법
     p.first = 5;
     p.second = 10;
 
     cout << p.first << ' ' << p.second << endl;
-    /////////////////
+    /////////////////////////
 
     dic.insert(make_pair("love", "사랑"));
     dic.insert(make_pair("apple", "사과"));
