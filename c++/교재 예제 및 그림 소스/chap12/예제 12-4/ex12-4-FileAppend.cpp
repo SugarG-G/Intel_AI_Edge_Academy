@@ -1,28 +1,33 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
+
 using namespace std;
 
-int main() {
-	const char* firstFile = "c:\\temp\\student.txt";
-	const char* secondFile = "c:\\windows\\system.ini";
+int main()
+{
+    const char *firstFile = "c:\\temp\\student.txt";
+    const char *secondFile = "c:\\windows\\system.ini";
 
-	fstream fout(firstFile, ios::out | ios::app); // ¾²±â ¸ðµå·Î ÆÄÀÏ ¿­±â
-	if(!fout) { // ¿­±â ½ÇÆÐ °Ë»ç
-		cout << firstFile << " ¿­±â ¿À·ù";
-		return 0;
-	}
+    fstream fout(firstFile, ios::out | ios::app); // ì“°ê¸° ëª¨ë“œë¡œ íŒŒì¼ ì—´ê¸°
+    if (!fout)
+    { // ì—´ê¸° ì‹¤íŒ¨ ê²€ì‚¬
+        cout << firstFile << " ì—´ê¸° ì˜¤ë¥˜";
+        return 0;
+    }
 
-	fstream fin(secondFile, ios::in); // ÀÐ±â ¸ðµå·Î ÆÄÀÏ ¿­±â
-	if(!fin) { // ¿­±â ½ÇÆÐ °Ë»ç
-		cout << secondFile << " ¿­±â ¿À·ù";
-		return 0;
-	}
+    fstream fin(secondFile, ios::in); // ì½ê¸° ëª¨ë“œë¡œ íŒŒì¼ ì—´ê¸°
+    if (!fin)
+    { // ì—´ê¸° ì‹¤íŒ¨ ê²€ì‚¬
+        cout << secondFile << " ì—´ê¸° ì˜¤ë¥˜";
+        return 0;
+    }
 
-	int c;
-	while((c=fin.get()) != EOF) { // ÆÄÀÏ ³¡±îÁö ¹®ÀÚ ÀÐ±â
-		fout.put(c); // ÀÐÀº ¹®ÀÚ ±â·Ï
-	}
+    int c;
+    while ((c = fin.get()) != EOF)
+    {                // íŒŒì¼ ëê¹Œì§€ ë¬¸ìž ì½ê¸°
+        fout.put(c); // ì½ì€ ë¬¸ìž ê¸°ë¡
+    }
 
-	fin.close(); // ÀÔ·Â ÆÄÀÏ ´Ý±â
-	fout.close(); // Ãâ·Â ÆÄÀÏ ´Ý±â
+    fin.close();  // ìž…ë ¥ íŒŒì¼ ë‹«ê¸°
+    fout.close(); // ì¶œë ¥ íŒŒì¼ ë‹«ê¸°
 }

@@ -1,18 +1,22 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
+
 using namespace std;
 
-int main() {
-	ifstream fin("c:\\windows\\system.ini");
-	if(!fin) {
-		cout << "c:\\windows\\system.ini ¿­±â ½ÇÆÐ" << endl;
-		return 0;
-	}
+int main()
+{
+    ifstream fin("c:\\windows\\system.ini");
+    if (!fin)
+    {
+        cout << "c:\\windows\\system.ini ì—´ê¸° ì‹¤íŒ¨" << endl;
+        return 0;
+    }
 
-	char buf[81]; // ÇÑ ¶óÀÎÀÌ ÃÖ´ë 80°³ÀÇ ¹®ÀÚ·Î ±¸¼ºµÈ´Ù°í °¡Á¤
-	while(fin.getline(buf, 81)) { // ÇÑ ¶óÀÎÀÌ ÃÖ´ë 80°³ÀÇ ¹®ÀÚ·Î ±¸¼º
-		cout << buf << endl; // ¶óÀÎ Ãâ·Â
-	}
+    char buf[81]; // í•œ ë¼ì¸ì´ ìµœëŒ€ 80ê°œì˜ ë¬¸ìžë¡œ êµ¬ì„±ëœë‹¤ê³  ê°€ì •
+    while (fin.getline(buf, 81))
+    {                        // í•œ ë¼ì¸ì´ ìµœëŒ€ 80ê°œì˜ ë¬¸ìžë¡œ êµ¬ì„±
+        cout << buf << endl; // ë¼ì¸ ì¶œë ¥
+    }
 
-	fin.close();
+    fin.close();
 }

@@ -1,42 +1,50 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
+
 using namespace std;
 
-void fileRead(vector<string> &v, ifstream &fin) { // fin ½ºÆ®¸²À¸·ÎºÎÅÍ º¤ÅÍ v¿¡ ÀĞ¾îµéÀÓ
-	string line;
-	while(getline(fin, line)) { // fin ÆÄÀÏ¿¡¼­ ÇÑ ¶óÀÎ ÀĞ±â
-		v.push_back(line); // ÀĞÀº ¶óÀÎÀ» º¤ÅÍ¿¡ ÀúÀå
-	}
+void fileRead(vector<string> &v, ifstream &fin)
+{ // fin ìŠ¤íŠ¸ë¦¼ìœ¼ë¡œë¶€í„° ë²¡í„° vì— ì½ì–´ë“¤ì„
+    string line;
+    while (getline(fin, line))
+    {                      // fin íŒŒì¼ì—ì„œ í•œ ë¼ì¸ ì½ê¸°
+        v.push_back(line); // ì½ì€ ë¼ì¸ì„ ë²¡í„°ì— ì €ì¥
+    }
 }
 
-void search(vector<string> &v, string word) { // º¤ÅÍ v¿¡¼­ word¸¦ Ã£¾Æ Ãâ·Â
-	for(int i=0; i<v.size(); i++) {
-		int index = v[i].find(word);
-		if(index != -1) // found
-			cout << v[i] << endl;
-	}
+void search(vector<string> &v, string word)
+{ // ë²¡í„° vì—ì„œ wordë¥¼ ì°¾ì•„ ì¶œë ¥
+    for (int i = 0; i < v.size(); i++)
+    {
+        int index = v[i].find(word);
+        if (index != -1) // found
+            cout << v[i] << endl;
+    }
 }
 
-int main() {
-	vector<string> wordVector;
-	ifstream fin("words.txt");
-	if(!fin) {
-		cout << "words.txt ÆÄÀÏÀ» ¿­ ¼ö ¾ø½À´Ï´Ù" << endl;
-		return 0; // ¿­±â ¿À·ù
-	}
-	fileRead(wordVector, fin); // fin ½ºÆ®¸²À¸·ÎºÎÅÍ wordVector¿¡ ¶óÀÎ º°·Î ÀĞ±â
-	fin.close();
+int main()
+{
+    vector<string> wordVector;
+    ifstream fin("words.txt");
+    if (!fin)
+    {
+        cout << "words.txt íŒŒì¼ì„ ì—´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤" << endl;
+        return 0; // ì—´ê¸° ì˜¤ë¥˜
+    }
+    fileRead(wordVector, fin); // fin ìŠ¤íŠ¸ë¦¼ìœ¼ë¡œë¶€í„° wordVectorì— ë¼ì¸ ë³„ë¡œ ì½ê¸°
+    fin.close();
 
-	cout << "words.txt ÆÄÀÏÀ» ÀĞ¾ú½À´Ï´Ù." << endl;
-	while(true) {
-		cout << "°Ë»öÇÒ ´Ü¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä >>";
-		string word;
-		getline(cin, word); // Å°º¸µå·ÎºÎÅÍ ¹®ÀÚ¿­ ÀĞ±â
-		if(word == "exit") 
-			break; // ÇÁ·Î±×·¥ Á¾·á
-		search(wordVector, word); // ¹®ÀÚ¿­À» words.txt¿¡¼­ °Ë»öÇÏ¿© Ãâ·Â
-	}
-	cout << "ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù." << endl;
+    cout << "words.txt íŒŒì¼ì„ ì½ì—ˆìŠµë‹ˆë‹¤." << endl;
+    while (true)
+    {
+        cout << "ê²€ìƒ‰í•  ë‹¨ì–´ë¥¼ ì…ë ¥í•˜ì„¸ìš” >>";
+        string word;
+        getline(cin, word); // í‚¤ë³´ë“œë¡œë¶€í„° ë¬¸ìì—´ ì½ê¸°
+        if (word == "exit")
+            break;                // í”„ë¡œê·¸ë¨ ì¢…ë£Œ
+        search(wordVector, word); // ë¬¸ìì—´ì„ words.txtì—ì„œ ê²€ìƒ‰í•˜ì—¬ ì¶œë ¥
+    }
+    cout << "í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤." << endl;
 }

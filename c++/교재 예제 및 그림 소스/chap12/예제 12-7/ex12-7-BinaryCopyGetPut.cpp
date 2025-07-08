@@ -1,32 +1,37 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
+
 using namespace std;
 
-int main() {
-	// ¼Ò½º ÆÄÀÏ°ú ¸ñÀû ÆÄÀÏÀÇ ÀÌ¸§
-	const char* srcFile = "c:\\temp\\desert.jpg";
-	const char* destFile = "c:\\temp\\copydesert.jpg";
+int main()
+{
+    // ì†ŒìŠ¤ íŒŒì¼ê³¼ ëª©ì  íŒŒì¼ì˜ ì´ë¦„
+    const char *srcFile = "c:\\temp\\desert.jpg";
+    const char *destFile = "c:\\temp\\copydesert.jpg";
 
-	// ¼Ò½º ÆÄÀÏ ¿­±â
-	ifstream fsrc(srcFile, ios::in | ios::binary);
-	if(!fsrc) { // ¿­±â ½ÇÆĞ °Ë»ç
-		cout << srcFile << " ¿­±â ¿À·ù" << endl;
-		return 0;
-	}
+    // ì†ŒìŠ¤ íŒŒì¼ ì—´ê¸°
+    ifstream fsrc(srcFile, ios::in | ios::binary);
+    if (!fsrc)
+    { // ì—´ê¸° ì‹¤íŒ¨ ê²€ì‚¬
+        cout << srcFile << " ì—´ê¸° ì˜¤ë¥˜" << endl;
+        return 0;
+    }
 
-	// ¸ñÀû ÆÄÀÏ ¿­±â
-	ofstream fdest(destFile, ios::out | ios::binary);
-	if(!fdest) { // ¿­±â ½ÇÆĞ °Ë»ç
-		cout << destFile << " ¿­±â ¿À·ù"<< endl;
-		return 0;
-	}
+    // ëª©ì  íŒŒì¼ ì—´ê¸°
+    ofstream fdest(destFile, ios::out | ios::binary);
+    if (!fdest)
+    { // ì—´ê¸° ì‹¤íŒ¨ ê²€ì‚¬
+        cout << destFile << " ì—´ê¸° ì˜¤ë¥˜" << endl;
+        return 0;
+    }
 
-	// ¼Ò½º ÆÄÀÏ¿¡¼­ ¸ñÀû ÆÄÀÏ·Î º¹»çÇÏ±â
-	int c;
-	while((c=fsrc.get()) != EOF) { // ¼Ò½º ÆÄÀÏÀ» ³¡±îÁö ÇÑ ¹ÙÀÌÆ®¾¿ ÀĞ´Â´Ù.
-		fdest.put(c); // ÀĞÀº ¹ÙÀÌÆ®¸¦ ÆÄÀÏ¿¡ Ãâ·ÂÇÑ´Ù.
-	}
-	cout << srcFile << "À» " << destFile << "·Î º¹»ç ¿Ï·á" << endl;
-	fsrc.close();
-	fdest.close();
+    // ì†ŒìŠ¤ íŒŒì¼ì—ì„œ ëª©ì  íŒŒì¼ë¡œ ë³µì‚¬í•˜ê¸°
+    int c;
+    while ((c = fsrc.get()) != EOF)
+    {                 // ì†ŒìŠ¤ íŒŒì¼ì„ ëê¹Œì§€ í•œ ë°”ì´íŠ¸ì”© ì½ëŠ”ë‹¤.
+        fdest.put(c); // ì½ì€ ë°”ì´íŠ¸ë¥¼ íŒŒì¼ì— ì¶œë ¥í•œë‹¤.
+    }
+    cout << srcFile << "ì„ " << destFile << "ë¡œ ë³µì‚¬ ì™„ë£Œ" << endl;
+    fsrc.close();
+    fdest.close();
 }

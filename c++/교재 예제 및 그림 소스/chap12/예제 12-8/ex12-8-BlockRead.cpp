@@ -1,26 +1,30 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
+
 using namespace std;
 
-int main() {
-	const char* file = "c:\\windows\\system.ini";
+int main()
+{
+    const char *file = "c:\\windows\\system.ini";
 
-	ifstream fin;
-	fin.open(file, ios::in | ios::binary); // ÀÐ±â ¸ðµå·Î ÆÄÀÏ ¿­±â
-	if(!fin) { // ¿­±â ½ÇÆÐ °Ë»ç
-		cout << "ÆÄÀÏ ¿­±â ¿À·ù";
-		return 0;
-	}
+    ifstream fin;
+    fin.open(file, ios::in | ios::binary); // ì½ê¸° ëª¨ë“œë¡œ íŒŒì¼ ì—´ê¸°
+    if (!fin)
+    { // ì—´ê¸° ì‹¤íŒ¨ ê²€ì‚¬
+        cout << "íŒŒì¼ ì—´ê¸° ì˜¤ë¥˜";
+        return 0;
+    }
 
-	int count = 0;
-	char s[32]; // ºí·Ï ´ÜÀ§·Î ÀÐ¾î µéÀÏ ¹öÆÛ
-	while(!fin.eof()) { // ÆÄÀÏ ³¡±îÁö ÀÐ´Â´Ù.
-		fin.read(s, 32); // ÃÖ´ë 32 ¹ÙÀÌÆ®¸¦ ÀÐ¾î ¹è¿­ s¿¡ ÀúÀå
-		int n = fin.gcount(); // ½ÇÁ¦ ÀÐÀº ¹ÙÀÌÆ® ¼ö ¾Ë¾Æ³¿
-		cout.write(s, n); // ¹öÆÛ¿¡ ÀÖ´Â n °³ÀÇ ¹ÙÀÌÆ®¸¦ È­¸é¿¡ Ãâ·Â
-		count += n;
-	}
+    int count = 0;
+    char s[32]; // ë¸”ë¡ ë‹¨ìœ„ë¡œ ì½ì–´ ë“¤ì¼ ë²„í¼
+    while (!fin.eof())
+    {                         // íŒŒì¼ ëê¹Œì§€ ì½ëŠ”ë‹¤.
+        fin.read(s, 32);      // ìµœëŒ€ 32 ë°”ì´íŠ¸ë¥¼ ì½ì–´ ë°°ì—´ sì— ì €ìž¥
+        int n = fin.gcount(); // ì‹¤ì œ ì½ì€ ë°”ì´íŠ¸ ìˆ˜ ì•Œì•„ëƒ„
+        cout.write(s, n);     // ë²„í¼ì— ìžˆëŠ” n ê°œì˜ ë°”ì´íŠ¸ë¥¼ í™”ë©´ì— ì¶œë ¥
+        count += n;
+    }
 
-	cout << "ÀÐÀº ¹ÙÀÌÆ® ¼ö´Â " << count << endl;
-	fin.close(); // ÀÔ·Â ÆÄÀÏ ´Ý±â
+    cout << "ì½ì€ ë°”ì´íŠ¸ ìˆ˜ëŠ” " << count << endl;
+    fin.close(); // ìž…ë ¥ íŒŒì¼ ë‹«ê¸°
 }
