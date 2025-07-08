@@ -1,21 +1,25 @@
+ï»¿#include <fstream>
 #include <iostream>
-#include <fstream>
+
 using namespace std;
 
-int main() {
-	const char* file = "c:\\windows\\system.ini"; // ÀÐÀ» ÆÄÀÏ
-	ifstream fin(file);
-	if(!fin) {
-		cout << file << " ¿­±â ¿À·ù" << endl;
-		return 0;
-	}
-	int count = 0;
-	int c;
-	while((c=fin.get()) != EOF) { // EOF¸¦ ¸¸³¯¶§±îÁö ÀÐÀ½
-		cout << (char)c; // ÀÐÀº ¹®ÀÚ¸¦ È­¸é¿¡ Ãâ·Â
-		count++;
-	}
+int main()
+{
+    const char *file = "c:\\windows\\system.ini"; // ì½ì„ íŒŒì¼
+    ifstream fin(file);
+    if (!fin)
+    {
+        cout << file << " ì—´ê¸° ì˜¤ë¥˜" << endl;
+        return 0;
+    }
+    int count = 0;
+    int c;
+    while ((c = fin.get()) != EOF)
+    {                    // EOFë¥¼ ë§Œë‚ ë•Œê¹Œì§€ ì½ìŒ
+        cout << (char)c; // ì½ì€ ë¬¸ìžë¥¼ í™”ë©´ì— ì¶œë ¥
+        count++;
+    }
 
-	cout << "ÀÐÀº ¹ÙÀÌÆ® ¼ö´Â " << count << endl;
-	fin.close(); // ÆÄÀÏ ´Ý±â
+    cout << "ì½ì€ ë°”ì´íŠ¸ ìˆ˜ëŠ” " << count << endl;
+    fin.close(); // íŒŒì¼ ë‹«ê¸°
 }
