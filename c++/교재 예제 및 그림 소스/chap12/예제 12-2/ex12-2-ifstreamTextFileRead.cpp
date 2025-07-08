@@ -1,28 +1,39 @@
+ï»¿#include <fstream>
 #include <iostream>
-#include <fstream>
+
 using namespace std;
 
-int main() {
-	// ½ºÆ®¸² °´Ã¼ »ı¼º ¹× ÆÄÀÏ ¿­±â
-	ifstream fin;  
-	fin.open("c:\\temp\\student.txt"); 
-	if(!fin) {  // ÆÄÀÏ ¿­±â ½ÇÆĞ
-		cout << "ÆÄÀÏÀ» ¿­ ¼ö ¾ø´Ù";
-		return 0;
-	}
-	
-	char name[10], dept[20];
-	int sid;
+int main()
+{
+    // ìŠ¤íŠ¸ë¦¼ ê°ì²´ ìƒì„± ë° íŒŒì¼ ì—´ê¸°
+    // ifstream fin;
+    fstream filetest;
+    filetest.open("c:\\temp\\student.txt", ios::in | ios::out | ios::trunc | ios::binary);
+    if (!filetest)
+    { // íŒŒì¼ ì—´ê¸° ì‹¤íŒ¨
+        cout << "íŒŒì¼ì„ ì—´ ìˆ˜ ì—†ë‹¤";
+        return 0;
+    }
 
-	// ÆÄÀÏ ÀĞ±â
-	fin >> name; // ÆÄÀÏ¿¡ ÀÖ´Â ¹®ÀÚ¿­À» ÀĞ¾î¼­ name ¹è¿­¿¡ ÀúÀå
-	fin >> sid; // Á¤¼ö¸¦ ÀĞ¾î¼­ sid Á¤¼öÇü º¯¼ö¿¡ ÀúÀå
-	fin >> dept; // ¹®ÀÚ¿­À» ÀĞ°í dept ¹è¿­¿¡ ÀúÀå
-	
-	// ÀĞÀº ÅØ½ºÆ®¸¦ È­¸é¿¡ Ãâ·Â
-	cout << name << endl;
-	cout << sid << endl;
-	cout << dept << endl;
+    char name[10], dept[20];
+    int sid;
 
-	fin.close(); // ÆÄÀÏ ÀĞ±â¸¦ ¸¶Ä¡°í ÆÄÀÏÀ» ´İ´Â´Ù.
+    // í…ŒìŠ¤íŠ¸ ì½”ë“œ ì‘ì„±
+    filetest << "aaaa" << endl;
+    filetest << "1234" << endl;
+    filetest << "c++" << endl;
+
+    filetest.seekg(ios::beg);
+
+    // íŒŒì¼ ì½ê¸°
+    filetest >> name; // íŒŒì¼ì— ìˆëŠ” ë¬¸ìì—´ì„ ì½ì–´ì„œ name ë°°ì—´ì— ì €ì¥
+    filetest >> sid;  // ì •ìˆ˜ë¥¼ ì½ì–´ì„œ sid ì •ìˆ˜í˜• ë³€ìˆ˜ì— ì €ì¥
+    filetest >> dept; // ë¬¸ìì—´ì„ ì½ê³  dept ë°°ì—´ì— ì €ì¥
+
+    // ì½ì€ í…ìŠ¤íŠ¸ë¥¼ í™”ë©´ì— ì¶œë ¥
+    cout << name << endl;
+    cout << sid << endl;
+    cout << dept << endl;
+
+    filetest.close(); // íŒŒì¼ ì½ê¸°ë¥¼ ë§ˆì¹˜ê³  íŒŒì¼ì„ ë‹«ëŠ”ë‹¤.
 }
