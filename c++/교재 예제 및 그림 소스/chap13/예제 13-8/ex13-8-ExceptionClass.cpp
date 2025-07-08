@@ -1,44 +1,53 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 using namespace std;
 
-class MyException { // »ç¿ëÀÚ°¡ ¸¸µå´Â ±âº» ¿¹¿Ü Å¬·¡½º ¼±¾ğ
-	int lineNo;
-	string func, msg;
+class MyException
+{ // ì‚¬ìš©ìê°€ ë§Œë“œëŠ” ê¸°ë³¸ ì˜ˆì™¸ í´ë˜ìŠ¤ ì„ ì–¸
+    int lineNo;
+    string func, msg;
+
 public:
-	MyException(int n, string f, string m) {
-		lineNo = n; func = f; msg = m; 
-	}
-	void print() { cout << func << ":" << lineNo << ", " << msg << endl; }
+    MyException(int n, string f, string m)
+    {
+        lineNo = n;
+        func = f;
+        msg = m;
+    }
+    void print() { cout << func << ":" << lineNo << ", " << msg << endl; }
 };
 
-class DivideByZeroException : public MyException { // 0À¸·Î ³ª´©´Â ¿¹¿Ü Å¬·¡½º ¼±¾ğ
+class DivideByZeroException : public MyException
+{ // 0ìœ¼ë¡œ ë‚˜ëˆ„ëŠ” ì˜ˆì™¸ í´ë˜ìŠ¤ ì„ ì–¸
 public:
-	DivideByZeroException(int lineNo, string func, string msg)
-		: MyException(lineNo, func, msg) { }
+    DivideByZeroException(int lineNo, string func, string msg) : MyException(lineNo, func, msg) {}
 };
 
-class InvalidInputException : public MyException { // Àß¸øµÈ ÀÔ·Â ¿¹¿Ü Å¬·¡½º ¼±¾ğ
+class InvalidInputException : public MyException
+{ // ì˜ëª»ëœ ì…ë ¥ ì˜ˆì™¸ í´ë˜ìŠ¤ ì„ ì–¸
 public:
-	InvalidInputException(int lineNo, string func, string msg)
-		: MyException(lineNo, func, msg) { }
+    InvalidInputException(int lineNo, string func, string msg) : MyException(lineNo, func, msg) {}
 };
 
-int main() {
-	int x, y;
-	try {
-		cout << "³ª´°¼ÀÀ» ÇÕ´Ï´Ù. µÎ °³ÀÇ ¾çÀÇ Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä>>";
-		cin >> x >> y;
-		if(x < 0 || y < 0)
-			throw InvalidInputException(33, "main()", "À½¼ö ÀÔ·Â ¿¹¿Ü ¹ß»ı"); // ÀÓ½Ã °´Ã¼ »ı¼º
-		if(y == 0)
-			throw DivideByZeroException(35, "main()", "0À¸·Î ³ª´©´Â ¿¹¿Ü ¹ß»ı"); // ÀÓ½Ã °´Ã¼ »ı¼º
-		cout << (double)x / (double)y;
-	}
-	catch(DivideByZeroException &e) { 
-		e.print();
-	}
-	catch(InvalidInputException &e) { 	
-		e.print();
-	}
+int main()
+{
+    int x, y;
+    try
+    {
+        cout << "ë‚˜ëˆ—ì…ˆì„ í•©ë‹ˆë‹¤. ë‘ ê°œì˜ ì–‘ì˜ ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”>>";
+        cin >> x >> y;
+        if (x < 0 || y < 0)
+            throw InvalidInputException(33, "main()", "ìŒìˆ˜ ì…ë ¥ ì˜ˆì™¸ ë°œìƒ"); // ì„ì‹œ ê°ì²´ ìƒì„±
+        if (y == 0)
+            throw DivideByZeroException(35, "main()", "0ìœ¼ë¡œ ë‚˜ëˆ„ëŠ” ì˜ˆì™¸ ë°œìƒ"); // ì„ì‹œ ê°ì²´ ìƒì„±
+        cout << (double)x / (double)y;
+    }
+    catch (DivideByZeroException &e)
+    {
+        e.print();
+    }
+    catch (InvalidInputException &e)
+    {
+        e.print();
+    }
 }
