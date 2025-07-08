@@ -1,35 +1,39 @@
+ï»¿#include <fstream>
 #include <iostream>
-#include <fstream>
+
 using namespace std;
 
-void showStreamState(ios& stream) {
-	cout << "eof() " << stream.eof() << endl;
-	cout << "fail() " << stream.fail() << endl;
-	cout << "bad() " << stream.bad() << endl;
-	cout << "good() " << stream.good() << endl;
+void showStreamState(ios &stream)
+{
+    cout << "eof() " << stream.eof() << endl;
+    cout << "fail() " << stream.fail() << endl;
+    cout << "bad() " << stream.bad() << endl;
+    cout << "good() " << stream.good() << endl;
 }
 
-int main() {
-	const char* noExistFile = "c:\\temp\\noexist.txt"; // Á¸ÀçÇÏÁö ¾Ê´Â ÆÄÀÏ¸í
-	const char* existFile = "c:\\temp\\student.txt"; // Á¸ÀçÇÏ´Â ÆÄÀÏ¸í
+int main()
+{
+    const char *noExistFile = "c:\\temp\\noexist.txt"; // ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” íŒŒì¼ëª…
+    const char *existFile = "c:\\temp\\student.txt";   // ì¡´ìž¬í•˜ëŠ” íŒŒì¼ëª…
 
-	ifstream fin(noExistFile); // Á¸ÀçÇÏÁö ¾Ê´Â ÆÄÀÏ ¿­±â
-	if(!fin) { // ¿­±â ½ÇÆÐ °Ë»ç
-		cout << noExistFile << " ¿­±â ¿À·ù" << endl;
-		showStreamState(fin); // ½ºÆ®¸² »óÅÂ Ãâ·Â
+    ifstream fin(noExistFile); // ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” íŒŒì¼ ì—´ê¸°
+    if (!fin)
+    { // ì—´ê¸° ì‹¤íŒ¨ ê²€ì‚¬
+        cout << noExistFile << " ì—´ê¸° ì˜¤ë¥˜" << endl;
+        showStreamState(fin); // ìŠ¤íŠ¸ë¦¼ ìƒíƒœ ì¶œë ¥
 
-		cout << existFile << " ÆÄÀÏ ¿­±â" << endl;
-		fin.open(existFile);	
-		showStreamState(fin); // ½ºÆ®¸² »óÅÂ Ãâ·Â
-	}
+        cout << existFile << " íŒŒì¼ ì—´ê¸°" << endl;
+        fin.open(existFile);
+        showStreamState(fin); // ìŠ¤íŠ¸ë¦¼ ìƒíƒœ ì¶œë ¥
+    }
 
-	// ½ºÆ®¸²À» ³¡±îÁö ÀÐ°í È­¸é¿¡ Ãâ·Â
-	int c;
-	while((c=fin.get()) != EOF) 
-		cout.put((char)c);
-	
-	cout << endl;
-	showStreamState(fin); // ½ºÆ®¸² Ãâ·Â
+    // ìŠ¤íŠ¸ë¦¼ì„ ëê¹Œì§€ ì½ê³  í™”ë©´ì— ì¶œë ¥
+    int c;
+    while ((c = fin.get()) != EOF)
+        cout.put((char)c);
 
-	fin.close();
+    cout << endl;
+    showStreamState(fin); // ìŠ¤íŠ¸ë¦¼ ì¶œë ¥
+
+    fin.close();
 }

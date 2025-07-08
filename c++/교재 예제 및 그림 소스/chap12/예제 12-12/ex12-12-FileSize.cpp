@@ -1,21 +1,25 @@
+ï»¿#include <fstream>
 #include <iostream>
-#include <fstream>
+
 using namespace std;
 
-long getFileSize(ifstream& fin) {
-	fin.seekg(0, ios::end); // ÆÄÀÏ Æ÷ÀÎÅÍ¸¦ ÆÄÀÏÀÇ ¸Ç ³¡À¸·Î ¿Å±è
-	long length = fin.tellg(); // ÆÄÀÏ Æ÷ÀÎÅÍÀÇ À§Ä¡¸¦ ¾Ë¾Æ³¿
-	return length; // length´Â ÆÄÀÏÀÇ Å©±â¿Í µ¿ÀÏ
+long getFileSize(ifstream &fin)
+{
+    fin.seekg(0, ios::end);    // íŒŒì¼ í¬ì¸í„°ë¥¼ íŒŒì¼ì˜ ë§¨ ëìœ¼ë¡œ ì˜®ê¹€
+    long length = fin.tellg(); // íŒŒì¼ í¬ì¸í„°ì˜ ìœ„ì¹˜ë¥¼ ì•Œì•„ëƒ„
+    return length;             // lengthëŠ” íŒŒì¼ì˜ í¬ê¸°ì™€ ë™ì¼
 }
 
-int main() {
-	const char* file = "c:\\windows\\system.ini";
+int main()
+{
+    const char *file = "c:\\windows\\system.ini";
 
-	ifstream fin(file);
-	if(!fin) { // ¿­±â ½ÇÆĞ °Ë»ç
-		cout << file << " ¿­±â ¿À·ù" << endl;
-		return 0;
-	}
-	cout << file << "ÀÇ Å©±â´Â " << getFileSize(fin);
-	fin.close(); 
+    ifstream fin(file);
+    if (!fin)
+    { // ì—´ê¸° ì‹¤íŒ¨ ê²€ì‚¬
+        cout << file << " ì—´ê¸° ì˜¤ë¥˜" << endl;
+        return 0;
+    }
+    cout << file << "ì˜ í¬ê¸°ëŠ” " << getFileSize(fin);
+    fin.close();
 }
