@@ -1,34 +1,39 @@
+ï»¿#include <fstream>
 #include <iostream>
-#include <fstream>
+
 using namespace std;
 
-int main() {
-	// ¼Ò½º ÆÄÀÏ°ú ¸ñÀû ÆÄÀÏÀÇ ÀÌ¸§
-	const char* srcFile = "c:\\temp\\tulips.jpg";
-	const char* destFile = "c:\\temp\\copytulips.jpg";
+int main()
+{
+    // ì†ŒìŠ¤ íŒŒì¼ê³¼ ëª©ì  íŒŒì¼ì˜ ì´ë¦„
+    const char *srcFile = "c:\\temp\\tulips.jpg";
+    const char *destFile = "c:\\temp\\copytulips.jpg";
 
-	// ¼Ò½º ÆÄÀÏ ¿­±â
-	ifstream fsrc(srcFile, ios::in | ios::binary);
-	if(!fsrc) { // ¿­±â ½ÇÆĞ °Ë»ç
-		cout << srcFile << " ¿­±â ¿À·ù" << endl;
-		return 0;
-	}
+    // ì†ŒìŠ¤ íŒŒì¼ ì—´ê¸°
+    ifstream fsrc(srcFile, ios::in | ios::binary);
+    if (!fsrc)
+    { // ì—´ê¸° ì‹¤íŒ¨ ê²€ì‚¬
+        cout << srcFile << " ì—´ê¸° ì˜¤ë¥˜" << endl;
+        return 0;
+    }
 
-	// ¸ñÀû ÆÄÀÏ ¿­±â
-	ofstream fdest(destFile, ios::out | ios::binary);
-	if(!fdest) { // ¿­±â ½ÇÆĞ °Ë»ç
-		cout << destFile << " ¿­±â ¿À·ù" << endl;
-		return 0;
-	}
+    // ëª©ì  íŒŒì¼ ì—´ê¸°
+    ofstream fdest(destFile, ios::out | ios::binary);
+    if (!fdest)
+    { // ì—´ê¸° ì‹¤íŒ¨ ê²€ì‚¬
+        cout << destFile << " ì—´ê¸° ì˜¤ë¥˜" << endl;
+        return 0;
+    }
 
-	// ¼Ò½º ÆÄÀÏ¿¡¼­ ¸ñÀû ÆÄÀÏ·Î º¹»çÇÏ±â
-	char buf[1024];
-	while(!fsrc.eof()) { // ÆÄÀÏ ³¡±îÁö ÀĞ´Â´Ù.
-		fsrc.read(buf, 1024); // ÃÖ´ë 1024 ¹ÙÀÌÆ®¸¦ ÀĞ¾î ¹è¿­ s¿¡ ÀúÀå
-		int n = fsrc.gcount(); // ½ÇÁ¦ ÀĞÀº ¹ÙÀÌÆ® ¼ö ¾Ë¾Æ³¿
-		fdest.write(buf, n); // ÀĞÀº ¹ÙÀÌÆ® ¼ö ¸¸Å­ ¹öÆÛ¿¡¼­ ¸ñÀû ÆÄÀÏ¿¡ ±â·Ï
-	}
-	cout << srcFile << "À» " << destFile << "·Î º¹»ç ¿Ï·á" << endl;
-	fsrc.close();
-	fdest.close();
+    // ì†ŒìŠ¤ íŒŒì¼ì—ì„œ ëª©ì  íŒŒì¼ë¡œ ë³µì‚¬í•˜ê¸°
+    char buf[1024];
+    while (!fsrc.eof())
+    {                          // íŒŒì¼ ëê¹Œì§€ ì½ëŠ”ë‹¤.
+        fsrc.read(buf, 1024);  // ìµœëŒ€ 1024 ë°”ì´íŠ¸ë¥¼ ì½ì–´ ë°°ì—´ sì— ì €ì¥
+        int n = fsrc.gcount(); // ì‹¤ì œ ì½ì€ ë°”ì´íŠ¸ ìˆ˜ ì•Œì•„ëƒ„
+        fdest.write(buf, n);   // ì½ì€ ë°”ì´íŠ¸ ìˆ˜ ë§Œí¼ ë²„í¼ì—ì„œ ëª©ì  íŒŒì¼ì— ê¸°ë¡
+    }
+    cout << srcFile << "ì„ " << destFile << "ë¡œ ë³µì‚¬ ì™„ë£Œ" << endl;
+    fsrc.close();
+    fdest.close();
 }
