@@ -1,20 +1,23 @@
+ï»¿#include <fstream>
 #include <iostream>
-#include <fstream>
+
 using namespace std;
 
-int main() {
-	ofstream fout; // ÆÄÀÏ Ãâ·Â ½ºÆ®¸² °´Ã¼ »ı¼º
-	fout.open("song.txt"); // song.txt ÆÄÀÏ ¿­±â
-	if(!fout) { // ¿­±â°¡ ½ÇÆĞÇÑ °æ¿ì
-		cout << "song.txt ÆÄÀÏÀ» ¿­ ¼ö ¾ø´Ù.";
-		return 0;
-	}
-	int age = 21;
-	char singer[] = "Kim";
-	char song[] = "Yesterday";
+int main()
+{
+    ofstream fout;         // íŒŒì¼ ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ ê°ì²´ ìƒì„±
+    fout.open("song.txt"); // song.txt íŒŒì¼ ì—´ê¸°
+    if (!fout)
+    { // ì—´ê¸°ê°€ ì‹¤íŒ¨í•œ ê²½ìš°
+        cout << "song.txt íŒŒì¼ì„ ì—´ ìˆ˜ ì—†ë‹¤.";
+        return 0;
+    }
+    int age = 21;
+    char singer[] = "Kim";
+    char song[] = "Yesterday";
 
-	fout << age << '\n'; // ÆÄÀÏ¿¡ age¿Í '\n'À» ±â·ÏÇÑ´Ù.
-	fout << singer << endl; // ÆÄÀÏ¿¡ singerÀÇ ¹®ÀÚ¿­°ú '\n'À» µ¡ºÙ¿© ±â·ÏÇÑ´Ù.
-	fout << song << endl; // ÆÄÀÏ¿¡ song ¹®ÀÚ¿­°ú '\n'À» µ¡ºÙ¿© ±â·ÏÇÑ´Ù.
-	fout.close();
+    fout << age << '\n';    // íŒŒì¼ì— ageì™€ '\n'ì„ ê¸°ë¡í•œë‹¤.
+    fout << singer << endl; // íŒŒì¼ì— singerì˜ ë¬¸ìì—´ê³¼ '\n'ì„ ë§ë¶™ì—¬ ê¸°ë¡í•œë‹¤.
+    fout << song << endl;   // íŒŒì¼ì— song ë¬¸ìì—´ê³¼ '\n'ì„ ë§ë¶™ì—¬ ê¸°ë¡í•œë‹¤.
+    fout.close();
 }

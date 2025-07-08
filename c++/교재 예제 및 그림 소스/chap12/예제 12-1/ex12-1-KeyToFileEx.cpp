@@ -1,30 +1,33 @@
+ï»¿#include <fstream>
 #include <iostream>
-#include <fstream>
+
 using namespace std;
 
-int main() {
-	char name[10], dept[20];
-	int sid;
+int main()
+{
+    char name[10], dept[20];
+    int sid;
 
-	// Å°º¸µå·ÎºÎÅÍ ÀĞ±â
-	cout << "ÀÌ¸§>>";
-	cin >> name; // Å°º¸µå¿¡¼­ ÀÌ¸§ ÀÔ·Â ¹ŞÀ½
-	cout << "ÇĞ¹ø(¼ıÀÚ·Î)>>";
-	cin >> sid; // Å°º¸µå¿¡¼­ ÇĞ¹ø ÀÔ·Â ¹ŞÀ½
-	cout << "ÇĞ°ú>>";
-	cin >> dept; // Å°º¸µå¿¡¼­ ÇĞ°ú ÀÔ·Â ¹ŞÀ½
+    // í‚¤ë³´ë“œë¡œë¶€í„° ì½ê¸°
+    cout << "ì´ë¦„>>";
+    cin >> name; // í‚¤ë³´ë“œì—ì„œ ì´ë¦„ ì…ë ¥ ë°›ìŒ
+    cout << "í•™ë²ˆ(ìˆ«ìë¡œ)>>";
+    cin >> sid; // í‚¤ë³´ë“œì—ì„œ í•™ë²ˆ ì…ë ¥ ë°›ìŒ
+    cout << "í•™ê³¼>>";
+    cin >> dept; // í‚¤ë³´ë“œì—ì„œ í•™ê³¼ ì…ë ¥ ë°›ìŒ
 
-	// ÆÄÀÏ ¿­±â. student.txt ÆÄÀÏÀ» ¿­°í, Ãâ·Â ½ºÆ®¸² »ı¼º
-	ofstream fout("c:\\temp\\student.txt"); 
-	if(!fout) { // ¿­±â ½ÇÆĞ
-		cout << "c:\\temp\\student.txt ÆÄÀÏÀ» ¿­ ¼ö ¾ø´Ù";
-		return 0;
-	}
+    // íŒŒì¼ ì—´ê¸°. student.txt íŒŒì¼ì„ ì—´ê³ , ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ ìƒì„±
+    ofstream fout("c:\\temp\\student.txt");
+    if (!fout)
+    { // ì—´ê¸° ì‹¤íŒ¨
+        cout << "c:\\temp\\student.txt íŒŒì¼ì„ ì—´ ìˆ˜ ì—†ë‹¤";
+        return 0;
+    }
 
-	// ÆÄÀÏ ¾²±â
-	fout << name << endl; // name ¾²±â
-	fout << sid << endl; // sid ¾²±â
-	fout << dept << endl; // dept ¾²±â
+    // íŒŒì¼ ì“°ê¸°
+    fout << name << endl; // name ì“°ê¸°
+    fout << sid << endl;  // sid ì“°ê¸°
+    fout << dept << endl; // dept ì“°ê¸°
 
-	fout.close(); // ÆÄÀÏ ´İ±â
+    fout.close(); // íŒŒì¼ ë‹«ê¸°
 }
