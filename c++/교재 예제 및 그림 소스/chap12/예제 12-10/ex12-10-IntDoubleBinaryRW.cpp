@@ -1,39 +1,44 @@
+ï»¿#include <fstream>
 #include <iostream>
-#include <fstream>
+
 using namespace std;
 
-int main() {
-	const char* file = "c:\\temp\\data.dat";
+int main()
+{
+    const char *file = "c:\\temp\\data.dat";
 
-	ofstream fout;
-	fout.open(file, ios::out | ios::binary); // ÀÐ±â ¸ðµå·Î ÆÄÀÏ ¿­±â
-	if(!fout) { // ¿­±â ½ÇÆÐ °Ë»ç
-		cout << "ÆÄÀÏ ¿­±â ¿À·ù";
-		return 0;
-	}
+    ofstream fout;
+    fout.open(file, ios::out | ios::binary); // ì½ê¸° ëª¨ë“œë¡œ íŒŒì¼ ì—´ê¸°
+    if (!fout)
+    { // ì—´ê¸° ì‹¤íŒ¨ ê²€ì‚¬
+        cout << "íŒŒì¼ ì—´ê¸° ì˜¤ë¥˜";
+        return 0;
+    }
 
-	int n[] = {0,1,2,3,4,5,6,7,8,9};
-	double d = 3.15;
-	fout.write((char*)n, sizeof(n)); // int ¹è¿­ nÀ» ÇÑ ¹ø¿¡ ÆÄÀÏ¿¡ ¾´´Ù.
-	fout.write((char*)(&d), sizeof(d)); // double °ª ÇÏ³ª¸¦ ÆÄÀÏ¿¡ ¾´´Ù.
-	fout.close();
+    int n[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    double d = 3.15;
+    fout.write((char *)n, sizeof(n));    // int ë°°ì—´ nì„ í•œ ë²ˆì— íŒŒì¼ì— ì“´ë‹¤.
+    fout.write((char *)(&d), sizeof(d)); // double ê°’ í•˜ë‚˜ë¥¼ íŒŒì¼ì— ì“´ë‹¤.
+    fout.close();
 
-	// ¹è¿­ n°ú d °ªÀ» ÀÓÀÇÀÇ °ªÀ¸·Î º¯°æ½ÃÅ²´Ù.
-	for(int i=0; i<10; i++) n[i]=99;
-	d = 8.15;
+    // ë°°ì—´ nê³¼ d ê°’ì„ ìž„ì˜ì˜ ê°’ìœ¼ë¡œ ë³€ê²½ì‹œí‚¨ë‹¤.
+    for (int i = 0; i < 10; i++)
+        n[i] = 99;
+    d = 8.15;
 
-	// ¹è¿­ n°ú d °ªÀ» ÆÄÀÏ¿¡¼­ ÀÐ¾î ¿Â´Ù.
-	ifstream fin(file, ios::in);
-	if(!fin) { // ¿­±â ½ÇÆÐ °Ë»ç
-		cout << "ÆÄÀÏ ¿­±â ¿À·ù";
-		return 0;
-	}
+    // ë°°ì—´ nê³¼ d ê°’ì„ íŒŒì¼ì—ì„œ ì½ì–´ ì˜¨ë‹¤.
+    ifstream fin(file, ios::in);
+    if (!fin)
+    { // ì—´ê¸° ì‹¤íŒ¨ ê²€ì‚¬
+        cout << "íŒŒì¼ ì—´ê¸° ì˜¤ë¥˜";
+        return 0;
+    }
 
-	fin.read((char*)n, sizeof(n)); // int ¹è¿­À» ÇÑ ¹ø¿¡ ÀÐ¿À ¿Â´Ù.
-	fin.read((char*)(&d), sizeof(d)); // double °ªÀ» ÀÐ¾î ¿Â´Ù.
+    fin.read((char *)n, sizeof(n));    // int ë°°ì—´ì„ í•œ ë²ˆì— ì½ì˜¤ ì˜¨ë‹¤.
+    fin.read((char *)(&d), sizeof(d)); // double ê°’ì„ ì½ì–´ ì˜¨ë‹¤.
 
-	for(int i=0; i<10; i++) // ÀÐÀº ¹è¿­ nÀ» È®ÀÎÇÑ´Ù.
-		cout << n[i] << ' ';
-	cout << endl << d << endl; // ÀÐÀº double °ªÀ» È®ÀÎÇÑ´Ù.
-	fin.close();
+    for (int i = 0; i < 10; i++) // ì½ì€ ë°°ì—´ nì„ í™•ì¸í•œë‹¤.
+        cout << n[i] << ' ';
+    cout << endl << d << endl; // ì½ì€ double ê°’ì„ í™•ì¸í•œë‹¤.
+    fin.close();
 }
