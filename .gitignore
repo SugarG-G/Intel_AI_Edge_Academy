@@ -9,3 +9,4 @@ MakeFile
 CMakeLists.txt
 .vs/
 x64/
+*.pro
