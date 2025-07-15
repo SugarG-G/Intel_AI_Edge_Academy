@@ -1,0 +1,35 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-pipe",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-D_REENTRANT",
+      "-fPIC",
+      "-DQT_DEPRECATED_WARNINGS",
+      "-DQT_NO_DEBUG",
+      "-DQT_WIDGETS_LIB",
+      "-DQT_GUI_LIB",
+      "-DQT_CORE_LIB",
+      "-I.",
+      "-I.",
+      "-I../../../../Qt5.14.2/5.14.2/gcc_64/include",
+      "-I../../../../Qt5.14.2/5.14.2/gcc_64/include/QtWidgets",
+      "-I../../../../Qt5.14.2/5.14.2/gcc_64/include/QtGui",
+      "-I../../../../Qt5.14.2/5.14.2/gcc_64/include/QtCore",
+      "-I.",
+      "-isystem",
+      "/usr/include/libdrm",
+      "-I../../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/linux-g++",
+      "-o",
+      "RadioButton.o",
+      "RadioButton.cpp"
+    ],
+    "directory": "/home/ubuntu/Qt/Source/Chapter10/radiobutton",
+    "file": "/home/ubuntu/Qt/Source/Chapter10/radiobutton/RadioButton.cpp",
+    "output": "/home/ubuntu/Qt/Source/Chapter10/radiobutton/RadioButton.o"
+  }
+]
