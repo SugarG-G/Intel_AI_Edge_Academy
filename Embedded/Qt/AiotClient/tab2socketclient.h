@@ -4,7 +4,10 @@
 #include <QWidget>
 #include <QDebug>
 #include <QTime>
+#include <QLineEdit>
+#include "keyboard.h"
 #include "socketclient.h"
+
 namespace Ui {
 class Tab2SocketClient;
 }
@@ -15,6 +18,7 @@ class Tab2SocketClient : public QWidget
 
 public:
     explicit Tab2SocketClient(QWidget *parent = nullptr);
+    SocketClient* getSocketClient();
     ~Tab2SocketClient();
 
 private slots:
@@ -23,11 +27,18 @@ private slots:
     void on_pPBrecvDataClear_clicked();
     void on_pPBSend_clicked();
     void socketSendToLinux(int);
+    void on_pLErecvId_selectionChanged();
+
+    void on_pLEsendData_selectionChanged();
+
 signals:
     void ledWriteSig(int);
+    void tab3RecvDataSig(QString);
+
 private:
     Ui::Tab2SocketClient *ui;
     SocketClient *pSocketClient;
+    Keyboard *pKeyboard;
 
 };
 

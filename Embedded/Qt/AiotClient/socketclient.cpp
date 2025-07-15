@@ -18,17 +18,18 @@ SocketClient::SocketClient(QWidget *parent)
 void SocketClient::connectToServerSlot(bool &bFlag)
 {
     QString strHostIp;
+    QString strPort;
     strHostIp = QInputDialog::getText(this,"Host Ip", "Input Server IP",QLineEdit::Normal,SERVERIP, &bFlag);
+    strPort = QInputDialog::getText(this,"Host Port", "Input Port",QLineEdit::Normal,QString::number(SERVERPORT), &bFlag);
     if(bFlag)
     {
         if(strHostIp.isEmpty())
             pQTcpSocket->connectToHost(SERVERIP, SERVERPORT);
         else
-            pQTcpSocket->connectToHost(strHostIp, SERVERPORT);
+            pQTcpSocket->connectToHost(strHostIp, strPort.toUShort());
     }
 
 }
-
 
 void SocketClient::socketReadDataSlot()
 {
@@ -49,7 +50,12 @@ void SocketClient::socketErrorSlot()
 }
 void SocketClient::socketConnectServerSlot()
 {
-    QString strIdPw ="["+LOGID+":"+LOGPW+"]";
+    QString strLogID;
+    QString strLogPW;
+    strLogID = QInputDialog::getText(this,"LOGID", "Input LOGID",QLineEdit::Normal,LOGID);
+    strLogPW = QInputDialog::getText(this,"LOGPW", "Input LOGPW",QLineEdit::Normal,LOGPW);
+
+    QString strIdPw ="["+strLogID+":"+strLogPW+"]";
     QByteArray byteIdPw = strIdPw.toLocal8Bit();
     pQTcpSocket->write(byteIdPw);
 }

@@ -6,8 +6,12 @@ Tab2SocketClient::Tab2SocketClient(QWidget *parent)
     , ui(new Ui::Tab2SocketClient)
 {
     ui->setupUi(this);
+
     ui->pPBSend->setEnabled(false);
     pSocketClient = new SocketClient(this);
+
+    pKeyboard = new Keyboard();
+
     connect(pSocketClient, SIGNAL(socketRecvDataSig(QString)),this, SLOT(updateRecvDataSlot(QString)));
 }
 
@@ -44,7 +48,7 @@ void Tab2SocketClient::on_pPBserverConnect_toggled(bool checked)
     strTime = strTime + " " + strRecvData;
     ui->pTErecvData->append(strTime);
 
-    //[KSH_QT]@LED@0xff  ==> @KSH_QT@LED@0xff
+    //[CHI_QT]@LED@0xff  ==> @CHI_QT@LED@0xff
     strRecvData.replace("[","@");
     strRecvData.replace("]","@");
     QStringList strList = strRecvData.split("@");
@@ -53,7 +57,13 @@ void Tab2SocketClient::on_pPBserverConnect_toggled(bool checked)
         bool bFlag;
         int ledNo = strList[3].toInt(&bFlag,16);
         if(bFlag)
+        {
             emit ledWriteSig(ledNo);
+        }
+    }
+    else if(strList[2].indexOf("LAMP") == 0 || strList[2].indexOf("PLUG") == 0)
+    {
+        emit tab3RecvDataSig(strRecvData);
     }
 }
 
@@ -80,7 +90,26 @@ void Tab2SocketClient::on_pPBSend_clicked()
 
 void Tab2SocketClient::socketSendToLinux(int keyNo)
 {
-    pSocketClient->socketWriteDataSlot("[KSH_LIN]KEY@"+QString::number(keyNo));
+    pSocketClient->socketWriteDataSlot("[CHI_LIN]KEY@"+QString::number(keyNo));
 }
 
+SocketClient* Tab2SocketClient::getSocketClient()
+{
+    return pSocketClient;
+}
+
+void Tab2SocketClient::on_pLErecvId_selectionChanged()
+{
+    QLineEdit *pQLineEdit = (QLineEdit *)sender();
+    pKeyboard->setLineEdit(pQLineEdit);
+    pKeyboard->show();
+}
+
+
+void Tab2SocketClient::on_pLEsendData_selectionChanged()
+{
+    QLineEdit *pQLineEdit = (QLineEdit *)sender();
+    pKeyboard->setLineEdit(pQLineEdit);
+    pKeyboard->show();
+}
 

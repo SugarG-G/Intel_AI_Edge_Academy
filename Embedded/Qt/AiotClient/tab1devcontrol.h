@@ -21,8 +21,6 @@ public:
     QDial *getpDial();
     LedKeyDev *getpLedKeyDev();
 
-
-
 private slots:
     void updateProgressBarLedSlot(int);
     void on_pPBtimerStart_clicked(bool checked);

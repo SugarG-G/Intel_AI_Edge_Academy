@@ -12,10 +12,15 @@ MainWidget::MainWidget(QWidget *parent)
     pTab2SocketClient = new Tab2SocketClient(ui->pTab2);
     ui->pTab2->setLayout(pTab2SocketClient->layout());
 
-    ui->pTabWidget->setCurrentIndex(1);
+    pTab3ControlPanel = new Tab3ControlPanel(ui->pTab3);
+    ui->pTab3->setLayout(pTab3ControlPanel->layout());
+
+    ui->pTabWidget->setCurrentIndex(2);
 
     connect(pTab2SocketClient, SIGNAL(ledWriteSig(int)), pTab1DevControl->getpDial(), SLOT(setValue(int)));
     connect(pTab1DevControl->getpLedKeyDev(), SIGNAL(updateKeyDataSig(int)), pTab2SocketClient, SLOT(socketSendToLinux(int)));
+    connect(pTab3ControlPanel, SIGNAL(sendControlDataSig(QString)), pTab2SocketClient->getSocketClient(), SLOT(socketWriteDataSlot(QString)));
+    connect(pTab2SocketClient, SIGNAL(tab3RecvDataSig(QString)), pTab3ControlPanel, SLOT(tab3RecvDataSlot(QString)));
 }
 
 MainWidget::~MainWidget()
