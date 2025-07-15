@@ -23,7 +23,7 @@ Tab2SocketClient::~Tab2SocketClient()
 void Tab2SocketClient::on_pPBserverConnect_toggled(bool checked)
 {
     bool bFlag;
-//    qDebug() << "on_pPBserverConnect_toggled()";
+    // qDebug() << "on_pPBserverConnect_toggled()";
     if(checked)
     {
         pSocketClient->connectToServerSlot(bFlag);

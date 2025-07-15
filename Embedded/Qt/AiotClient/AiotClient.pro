@@ -34,7 +34,7 @@ FORMS += \
     tab2socketclient.ui \
     tab3controlpanel.ui
 
-QMAKE_CXXFLAGS += /utf-8
+# QMAKE_CXXFLAGS += /utf-8
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -42,4 +42,3 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     Images.qrc \
-    Images/Images.qrc
