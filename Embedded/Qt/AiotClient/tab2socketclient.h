@@ -34,6 +34,7 @@ private slots:
 signals:
     void ledWriteSig(int);
     void tab3RecvDataSig(QString);
+    void tab4RecvDataSig(QString);
 
 private:
     Ui::Tab2SocketClient *ui;

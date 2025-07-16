@@ -65,6 +65,10 @@ void Tab2SocketClient::on_pPBserverConnect_toggled(bool checked)
     {
         emit tab3RecvDataSig(strRecvData);
     }
+    else if (strList[2].indexOf("SENSOR") == 0)
+    {
+        emit tab4RecvDataSig(strRecvData);
+    }
 }
 
 void Tab2SocketClient::on_pPBrecvDataClear_clicked()

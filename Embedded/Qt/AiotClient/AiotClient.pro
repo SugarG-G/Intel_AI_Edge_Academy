@@ -1,4 +1,4 @@
-QT       += core gui network
+QT       += core gui network charts sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,7 +16,9 @@ SOURCES += \
     socketclient.cpp \
     tab1devcontrol.cpp \
     tab2socketclient.cpp \
-    tab3controlpanel.cpp
+    tab3controlpanel.cpp \
+    tab4sensorchart.cpp \
+    tab5sensordatabase.cpp
 
 HEADERS += \
     keyboard.h \
@@ -25,14 +27,18 @@ HEADERS += \
     socketclient.h \
     tab1devcontrol.h \
     tab2socketclient.h \
-    tab3controlpanel.h
+    tab3controlpanel.h \
+    tab4sensorchart.h \
+    tab5sensordatabase.h
 
 FORMS += \
     keyboard.ui \
     mainwidget.ui \
     tab1devcontrol.ui \
     tab2socketclient.ui \
-    tab3controlpanel.ui
+    tab3controlpanel.ui \
+    tab4sensorchart.ui \
+    tab5sensordatabase.ui
 
 # QMAKE_CXXFLAGS += /utf-8
 # Default rules for deployment.
