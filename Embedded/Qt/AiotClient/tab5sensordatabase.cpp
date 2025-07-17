@@ -122,9 +122,9 @@ void Tab5SensorDatabase::tab5RecvDataSlot(QString strRecvData)
 
     QString name = strList[1];
 
-    pCDSLine->append(datetime.toMSecsSinceEpoch(),cds.toInt());
-    pTempLine->append(datetime.toMSecsSinceEpoch(),temp.toDouble());
-    pHumiLine->append(datetime.toMSecsSinceEpoch(),humi.toDouble());
+    // pCDSLine->append(datetime.toMSecsSinceEpoch(),cds.toInt());
+    // pTempLine->append(datetime.toMSecsSinceEpoch(),temp.toDouble());
+    // pHumiLine->append(datetime.toMSecsSinceEpoch(),humi.toDouble());
 
     if(datetime > lastDateTime)
     {
@@ -170,7 +170,7 @@ void Tab5SensorDatabase::on_pPBsearchDB_clicked()
     QString strFromDateTime = fromDateTime.toString("yyyy/MM/dd hh:mm:ss");
     QString strtoDateTime = toDateTime.toString("yyyy/MM/dd hh:mm:ss");
 
-    ui->pTBsensor->clearContents();
+    // ui->pTBsensor->clearContents();
     // pCDSLine->clear();
     on_pPBClearChart_clicked();
 
@@ -186,7 +186,6 @@ void Tab5SensorDatabase::on_pPBsearchDB_clicked()
         qDebug() << "select Query OK";
 
         QDateTime minTime, maxTime;
-        bool fristFlag = true;
 
         while(sqlQuery.next())
         {
@@ -234,19 +233,34 @@ void Tab5SensorDatabase::on_pPBsearchDB_clicked()
                 pTempLine->append(dateTime.toMSecsSinceEpoch(), tempStr.toDouble());
                 pHumiLine->append(dateTime.toMSecsSinceEpoch(), humistr.toDouble());
 
-                if (fristFlag) {
-                    minTime = maxTime = dateTime;
-                    fristFlag = false;
-                } else {
-                    if (dateTime < minTime) minTime = dateTime;
-                    if (dateTime > maxTime) maxTime = dateTime;
-                }
+                //기존에 처음과 끝을 확인하기 위한 코드 하지만 아래 .first() .last()로바뀜
+                // if (fristFlag) {
+                //     minTime = maxTime = dateTime;
+                //     fristFlag = false;
+                // } else {
+                //     if (dateTime < minTime) minTime = dateTime;
+                //     if (dateTime > maxTime) maxTime = dateTime;
+                // }
             }
         }
-        if (!fristFlag) {
-            pQDateTimeAxisX->setRange(minTime, maxTime.addSecs(60));
-        }
+        // if (!fristFlag) {
+        //     pQDateTimeAxisX->setRange(minTime, maxTime);
+        // }
+
+        //id 날짜 조도 온도 습도 간격 자동조절
+        ui->pTBsensor->resizeColumnToContents(0);
+        ui->pTBsensor->resizeColumnToContents(1);
+        ui->pTBsensor->resizeColumnToContents(2);
+        ui->pTBsensor->resizeColumnToContents(3);
+        ui->pTBsensor->resizeColumnToContents(4);
     }
+    //쿼리의 첫번째와 마지막을 가져올 수있음
+    sqlQuery.first();
+    firstDateTime = QDateTime::fromString(sqlQuery.value("date").toString(), "yyyy/MM/dd hh:mm:ss");
+    sqlQuery.last();
+    lastDateTime = QDateTime::fromString(sqlQuery.value("date").toString(), "yyyy/MM/dd hh:mm:ss");
+
+    pQDateTimeAxisX->setRange(firstDateTime, lastDateTime);
 }
 
 

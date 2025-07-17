@@ -2,28 +2,39 @@
 #define TAB4SENSORCHART_H
 
 #include <QWidget>
-#include <QtCharts/QChartView>
-#include <QtCharts/QLineSeries>
 #include <QDebug>
-#include <QDateTimeAxis>
 #include <QDate>
 #include <QTime>
 #include <QStringList>
 
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+#include <QChartView>
+#include <QLineSeries>
+#include <QDateTimeAxis>
+#include <QValueAxis>
+#else
+#include <QtCharts/QChartView>
+#include <QtCharts/QChart>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QDateTimeAxis>
+#include <QtCharts/QValueAxis>
+QT_CHARTS_USE_NAMESPACE
+#endif
+
 namespace Ui {
-class Tab4SensorChart;
+class tab4SensorChart;
 }
 
-class Tab4SensorChart : public QWidget
+class tab4SensorChart : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Tab4SensorChart(QWidget *parent = nullptr);
-    ~Tab4SensorChart();
+    explicit tab4SensorChart(QWidget *parent = nullptr);
+    ~tab4SensorChart();
 
 private:
-    Ui::Tab4SensorChart *ui;
+    Ui::tab4SensorChart *ui;
 
     QLineSeries *pCDSLine;
     QLineSeries *pTempLine;

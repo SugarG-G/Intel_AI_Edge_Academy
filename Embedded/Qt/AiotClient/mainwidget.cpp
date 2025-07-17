@@ -15,7 +15,7 @@ MainWidget::MainWidget(QWidget *parent)
     pTab3ControlPanel = new Tab3ControlPanel(ui->pTab3);
     ui->pTab3->setLayout(pTab3ControlPanel->layout());
 
-    pTab4SensorChart = new Tab4SensorChart(ui->pTab4);
+    pTab4SensorChart = new tab4SensorChart(ui->pTab4);
     ui->pTab4->setLayout(pTab4SensorChart->layout());
 
     pTab5SensorDatabase = new Tab5SensorDatabase(ui->pTab5);

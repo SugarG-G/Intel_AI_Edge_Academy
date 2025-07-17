@@ -13,7 +13,7 @@ class SocketClient : public QWidget
 {
     Q_OBJECT
     QTcpSocket *pQTcpSocket;
-    QString SERVERIP = "192.168.0.4";
+    QString SERVERIP = "192.168.0.5";
     int SERVERPORT = 5000;
     QString LOGID = "18";
     QString LOGPW = "PASSWD";

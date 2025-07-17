@@ -27,7 +27,7 @@ private:
     Tab1DevControl *pTab1DevControl;
     Tab2SocketClient *pTab2SocketClient;
     Tab3ControlPanel *pTab3ControlPanel;
-    Tab4SensorChart *pTab4SensorChart;
+    tab4SensorChart *pTab4SensorChart;
     Tab5SensorDatabase *pTab5SensorDatabase;
 };
 #endif // MAINWIDGET_H

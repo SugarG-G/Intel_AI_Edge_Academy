@@ -1,9 +1,9 @@
 #include "tab4sensorchart.h"
 #include "ui_tab4sensorchart.h"
 
-Tab4SensorChart::Tab4SensorChart(QWidget *parent)
+tab4SensorChart::tab4SensorChart(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::Tab4SensorChart)
+    , ui(new Ui::tab4SensorChart)
 {
     ui->setupUi(this);
     //cds
@@ -65,7 +65,7 @@ Tab4SensorChart::Tab4SensorChart(QWidget *parent)
     pQChartView->chart()->setAxisX(pQDateTimeAxisX, pHumiLine);
 }
 
-void Tab4SensorChart::updateLastDateTime(bool bFlag)
+void tab4SensorChart::updateLastDateTime(bool bFlag)
 {
     QDate date = QDate::currentDate();
     QTime time = QTime::currentTime();
@@ -80,7 +80,7 @@ void Tab4SensorChart::updateLastDateTime(bool bFlag)
 
 }
 
-void Tab4SensorChart::tab4RecvDataSlot(QString strRecvData)
+void tab4SensorChart::tab4RecvDataSlot(QString strRecvData)
 {
     // qDebug() << "tab4RecvDataSlot";
     QDate date = QDate::currentDate();
@@ -112,12 +112,12 @@ void Tab4SensorChart::tab4RecvDataSlot(QString strRecvData)
     // qDebug() << "xValue.toMSecsSinceEpoch() : " << xValue.toMSecsSinceEpoch();
 }
 
-Tab4SensorChart::~Tab4SensorChart()
+tab4SensorChart::~tab4SensorChart()
 {
     delete ui;
 }
 
-void Tab4SensorChart::on_pPBClearChart_clicked()
+void tab4SensorChart::on_pPBClearChart_clicked()
 {
     pCDSLine->clear();
     pTempLine->clear();
