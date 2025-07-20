@@ -24,6 +24,9 @@ MainWidget::MainWidget(QWidget *parent)
     pTab6WebCamera = new Tab6WebCamera(ui->pTab6);
     ui->pTab6->setLayout(pTab6WebCamera->layout());
 
+    pTab7CamViewThread = new Tab7CamViewThread(ui->pTab7);
+    ui->pTab7->setLayout(pTab7CamViewThread->layout());
+
     ui->pTabWidget->setCurrentIndex(5);
 
     connect(pTab2SocketClient, SIGNAL(ledWriteSig(int)), pTab1DevControl->getpDial(), SLOT(setValue(int)));
