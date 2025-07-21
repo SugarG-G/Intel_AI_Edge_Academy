@@ -12,7 +12,7 @@ Tab6WebCamera::Tab6WebCamera(QWidget *parent) :
     pQProcess = new QProcess(this);
     pQWebEngineView = new QWebEngineView(this);
 
-    QPixmap pixMap(":/Images/Images/display.jpg");
+    QPixmap pixMap(":/Images/Images/initDisplay.png");
     QGraphicsScene* scene = new QGraphicsScene(ui->pGPView);
     scene->addPixmap(pixMap);
 
@@ -70,7 +70,7 @@ void Tab6WebCamera::camStartSlot(bool bCheck)
         }
 
                // 새 씬 생성 및 이미지 추가
-        QPixmap pixMap(":/Images/Images/display.jpg");
+        QPixmap pixMap(":/Images/Images/initDisplay.png");
         QGraphicsScene* scene = new QGraphicsScene(ui->pGPView);
         scene->addPixmap(pixMap);
 
@@ -78,5 +78,11 @@ void Tab6WebCamera::camStartSlot(bool bCheck)
 
         ui->pPBCamStart->setText("CamStart");
     }
+}
+
+
+void Tab6WebCamera::on_pPBsnapShot_clicked()
+{
+
 }
 

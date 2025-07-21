@@ -15,6 +15,9 @@ class WebCamThread : public QThread
     Mat frame;
     void put_string(Mat &frame, string text, Point pt, int value);
 
+    QImage qImage;
+    Mat frameQt;
+
 public:
     WebCamThread(QObject *parent = nullptr);
     bool camViewFlag;

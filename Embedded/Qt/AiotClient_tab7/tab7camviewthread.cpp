@@ -10,7 +10,10 @@ Tab7CamViewThread::Tab7CamViewThread(QWidget *parent) : QWidget(parent), ui(new 
     pWebCamThread->pCamView = ui->plabelCamView;
 }
 
-Tab7CamViewThread::~Tab7CamViewThread() { delete ui; }
+Tab7CamViewThread::~Tab7CamViewThread()
+{
+    delete ui;
+}
 
 void Tab7CamViewThread::on_pPBcamStart_clicked(bool checked)
 {

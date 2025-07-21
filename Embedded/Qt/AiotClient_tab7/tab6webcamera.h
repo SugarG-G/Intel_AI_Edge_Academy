@@ -27,6 +27,7 @@ private:
 
 private slots:
     void camStartSlot(bool);
+    void on_pPBsnapShot_clicked();
 };
 
 #endif // TAB6WEBCAMERA_H
