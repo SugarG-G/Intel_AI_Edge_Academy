@@ -35,15 +35,26 @@ void WebCamThread::run()
         //중심점 좌표 구하기
 
         //십자가 그리기
-        line(frameQt, Point((x-32),y), Point((x+32), y), Scalar(255,0,0), 2);
-        line(frameQt, Point(x,(y-32)), Point(x, (y+32)), Scalar(255,0,0), 2);
+        // line(frameQt, Point((x-32),y), Point((x+32), y), Scalar(255,0,0), 2);
+        // line(frameQt, Point(x,(y-32)), Point(x, (y+32)), Scalar(255,0,0), 2);
         //십자가 그리기
 
+        //사각형 그리기
         rectangle(frameQt, Point((x-32),(y-32)), Point((x+32), (y+32)), Scalar(0,255,0), 2); //사각형을 그릴때는 좌즉 상단의 좌표와, 우측 하단의 좌표가 필요
+        //사각형 그리기
+
         pCamView->setPixmap(QPixmap::fromImage(qImage));//qt를 활용한 gui 환경에서 이미지 띄우기
 
-        Mat hsvImage;
-        cvtColor(frame, hsvImage, COLOR_BGR2HSV);
+        Scalar meanRGB, meanHSV;
+        Mat frameROI, hsvImage;
+
+        frameROI = frame(Rect((x-32),(y-32), 64, 64)); // 사각형 영역의 이미지를 자름
+        // meanRGB = mean(frameROI);
+
+        cvtColor(frameROI, hsvImage, COLOR_BGR2HSV);
+        meanHSV = mean(hsvImage); //hsv의 색상 평균 계산
+
+        qDebug() << "meanHSV H : " << meanHSV[0] << " meanHSV S : " << meanHSV[1] << " meanHSV V : " << meanHSV[2];
 
 /*        int key = waitKey(33);
         if(key == 's') //115
