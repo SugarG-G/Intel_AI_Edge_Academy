@@ -6,7 +6,8 @@ WebCamThread::WebCamThread(QObject *parent)
     cnt = 0;
     camViewFlag = false;
     rgbClassifyFlag = false;
-
+    strColor = "NONE";
+    strColorPre = "";
     pQTimer = new QTimer(this);
 
     connect(pQTimer, SIGNAL(timeout()), this, SLOT(rgbClassifySlot()));
@@ -24,7 +25,7 @@ void WebCamThread::run()
 
         capture.read(frame);
 
-        put_string(frame, "Count: ", Point(10, 40), cnt);
+        // put_string(frame, "Count: ", Point(10, 40), cnt);
         fname = "cam_" + to_string(cnt++);
         fname += ".jpg";
 
@@ -32,27 +33,15 @@ void WebCamThread::run()
 
         // imshow("카메라 영상보기", frame); // opencv클래스를 활용한 이미지 화면 띄우기
 
-        qImage = QImage(frameQt.data, frameQt.cols, frameQt.rows, QImage::Format_RGB888); //qt에 이미지를 띄우기 위한 전처리
 
         //중심점 좌표 구하기
         int x = frameQt.cols / 2;
         int y = frameQt.rows / 2;
         //중심점 좌표 구하기
 
-        //십자가 그리기
-        // line(frameQt, Point((x-32),y), Point((x+32), y), Scalar(255,0,0), 2);
-        // line(frameQt, Point(x,(y-32)), Point(x, (y+32)), Scalar(255,0,0), 2);
-        //십자가 그리기
-
-        //사각형 그리기
-        rectangle(frameQt, Point((x-32),(y-32)), Point((x+32), (y+32)), Scalar(0,255,0), 2); //사각형을 그릴때는 좌즉 상단의 좌표와, 우측 하단의 좌표가 필요
-        //사각형 그리기
-
-        pCamView->setPixmap(QPixmap::fromImage(qImage));//qt를 활용한 gui 환경에서 이미지 띄우기
-
         if(rgbClassifyFlag)
         {
-            Scalar meanRGB, meanHSV;
+            Scalar meanRGB, meanHSV; //Scalar는 배열형태
             Mat frameROI, hsvImage;
 
             frameROI = frame(Rect((x-32),(y-32), 64, 64)); // 사각형 영역의 이미지를 자름
@@ -61,12 +50,50 @@ void WebCamThread::run()
             cvtColor(frameROI, hsvImage, COLOR_BGR2HSV);
             meanHSV = mean(hsvImage); //hsv의 색상 평균 계산
 
-            qDebug() << "meanHSV H : " << meanHSV[0] << " meanHSV S : " << meanHSV[1] << " meanHSV V : " << meanHSV[2];
+            // qDebug() << "meanHSV H : " << meanHSV[0] << " meanHSV S : " << meanHSV[1] << " meanHSV V : " << meanHSV[2];
+
+            if(160 <= meanHSV[0] ||  20 > meanHSV[0] )
+            {
+                strColor = "RED";
+            }
+            else if(40 <= meanHSV[0] &&  80> meanHSV[0] )
+            {
+                strColor = "GREEN";
+            }
+            else if(90 <= meanHSV[0] &&  140 > meanHSV[0] )
+            {
+                strColor = "BLUE";
+            }
+            else
+            {
+                strColor = "NONE";
+            }
 
             rgbClassifyFlag = false;
-        }
 
-/*        int key = waitKey(33);
+            if(strColor != strColorPre)
+            {
+                emit socketSendDataSig("[CHI_LIN]COLOR@" + strColor);
+                strColorPre = strColor;
+            }
+
+        }
+        // qDebug() << strColor;
+        put_string(frameQt, strColor.toStdString(), Point(10, 40));
+
+        //십자가 그리기
+        line(frameQt, Point((x-32),y), Point((x+32), y), Scalar(255,0,0), 2);
+        line(frameQt, Point(x,(y-32)), Point(x, (y+32)), Scalar(255,0,0), 2);
+        //십자가 그리기
+
+        //사각형 그리기
+        rectangle(frameQt, Point((x-32),(y-32)), Point((x+32), (y+32)), Scalar(0,255,0), 2); //사각형을 그릴때는 좌즉 상단의 좌표와, 우측 하단의 좌표가 필요
+        //사각형 그리기
+
+        qImage = QImage(frameQt.data, frameQt.cols, frameQt.rows, QImage::Format_RGB888); //qt에 이미지를 띄우기 위한 전처리
+        pCamView->setPixmap(QPixmap::fromImage(qImage));//qt를 활용한 gui 환경에서 이미지 띄우기
+
+/*      int key = waitKey(33);
         if(key == 's') //115
             imwrite(fname,frame);
         else if(key == 'b')  //98
@@ -85,11 +112,29 @@ void WebCamThread::run()
 // 문자열 출력 함수 - 그림자 효과
 void WebCamThread::put_string(Mat &frame, string text, Point pt, int value)
 {
-    text += to_string(value);
+    Scalar colorScalar;
+    if(value != -1)
+    {
+        text += to_string(value);
+    }
+    if(text == "RED")
+    {
+        colorScalar = {255,0,0};
+    }
+    else if(text == "GREEN")
+    {
+        colorScalar = {0,255,0};
+    }
+    else if(text == "BLUE")
+    {
+        colorScalar = {0,0,255};
+    }
+    // text += to_string(value);
     Point shade = pt + Point(2, 2);
     int font = FONT_HERSHEY_SIMPLEX;
     putText(frame, text, shade, font, 0.7, Scalar(0, 0, 0), 2);     // 그림자 효과
-    putText(frame, text, pt, font, 0.7, Scalar(120, 200, 90), 2);// 작성 문자
+    // putText(frame, text, pt, font, 0.7, Scalar(120, 200, 90), 2);// 작성 문자
+    putText(frame, text, pt, font, 0.7, colorScalar, 2);// 작성 문자
 }
 void WebCamThread::snapShot()
 {

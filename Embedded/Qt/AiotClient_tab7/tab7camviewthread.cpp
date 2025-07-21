@@ -60,3 +60,8 @@ void Tab7CamViewThread::on_pCBrgb_clicked(bool checked)
         pWebCamThread->rgbTimerStop();
     }
 }
+
+WebCamThread* Tab7CamViewThread::getpWebCamThread()
+{
+    return pWebCamThread;
+}

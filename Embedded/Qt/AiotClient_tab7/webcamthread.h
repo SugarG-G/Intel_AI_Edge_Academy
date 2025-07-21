@@ -15,7 +15,7 @@ class WebCamThread : public QThread
     int cnt;
     string fname;
     Mat frame;
-    void put_string(Mat &frame, string text, Point pt, int value);
+    void put_string(Mat &frame, string text, Point pt, int value = -1);
 
     QImage qImage;
     Mat frameQt;
@@ -23,6 +23,12 @@ class WebCamThread : public QThread
     QTimer *pQTimer;
 
     bool rgbClassifyFlag;
+
+    QString strColor;
+    QString strColorPre;
+
+signals :
+    void socketSendDataSig(QString);
 
 public:
     WebCamThread(QObject *parent = nullptr);
