@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>660</width>
-    <height>532</height>
+    <width>754</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,1,2">
        <item>
         <widget class="QPushButton" name="pPBcamStart">
          <property name="text">
@@ -38,6 +38,13 @@
          </property>
          <property name="checked">
           <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="pCBrgb">
+         <property name="text">
+          <string>RGB Classify</string>
          </property>
         </widget>
        </item>

@@ -5,6 +5,11 @@ WebCamThread::WebCamThread(QObject *parent)
 {
     cnt = 0;
     camViewFlag = false;
+    rgbClassifyFlag = false;
+
+    pQTimer = new QTimer(this);
+
+    connect(pQTimer, SIGNAL(timeout()), this, SLOT(rgbClassifySlot()));
 }
 
 void WebCamThread::run()
@@ -45,16 +50,21 @@ void WebCamThread::run()
 
         pCamView->setPixmap(QPixmap::fromImage(qImage));//qt를 활용한 gui 환경에서 이미지 띄우기
 
-        Scalar meanRGB, meanHSV;
-        Mat frameROI, hsvImage;
+        if(rgbClassifyFlag)
+        {
+            Scalar meanRGB, meanHSV;
+            Mat frameROI, hsvImage;
 
-        frameROI = frame(Rect((x-32),(y-32), 64, 64)); // 사각형 영역의 이미지를 자름
-        // meanRGB = mean(frameROI);
+            frameROI = frame(Rect((x-32),(y-32), 64, 64)); // 사각형 영역의 이미지를 자름
+            // meanRGB = mean(frameROI);
 
-        cvtColor(frameROI, hsvImage, COLOR_BGR2HSV);
-        meanHSV = mean(hsvImage); //hsv의 색상 평균 계산
+            cvtColor(frameROI, hsvImage, COLOR_BGR2HSV);
+            meanHSV = mean(hsvImage); //hsv의 색상 평균 계산
 
-        qDebug() << "meanHSV H : " << meanHSV[0] << " meanHSV S : " << meanHSV[1] << " meanHSV V : " << meanHSV[2];
+            qDebug() << "meanHSV H : " << meanHSV[0] << " meanHSV S : " << meanHSV[1] << " meanHSV V : " << meanHSV[2];
+
+            rgbClassifyFlag = false;
+        }
 
 /*        int key = waitKey(33);
         if(key == 's') //115
@@ -85,4 +95,22 @@ void WebCamThread::snapShot()
 {
     // imwrite(fname,frame);
     qImage.save(QString::fromStdString(fname), "JPG", 80);
+}
+
+void WebCamThread::rgbTimerStart()
+{
+    pQTimer->start(1000);
+}
+
+void WebCamThread::rgbTimerStop()
+{
+    if(pQTimer->isActive())
+    {
+        pQTimer->stop();
+    }
+}
+
+void WebCamThread::rgbClassifySlot()
+{
+    rgbClassifyFlag = true;
 }

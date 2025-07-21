@@ -4,6 +4,8 @@
 #include <QThread>
 #include <QLabel>
 #include <opencv2/opencv.hpp>
+#include <QTimer>
+
 using namespace cv;
 using namespace std;
 class WebCamThread : public QThread
@@ -18,11 +20,20 @@ class WebCamThread : public QThread
     QImage qImage;
     Mat frameQt;
 
+    QTimer *pQTimer;
+
+    bool rgbClassifyFlag;
+
 public:
     WebCamThread(QObject *parent = nullptr);
     bool camViewFlag;
     QLabel *pCamView;
     void snapShot();
+    void rgbTimerStart();
+    void rgbTimerStop();
+
+private slots:
+    void rgbClassifySlot();
 };
 
 #endif // WEBCAMTHREAD_H

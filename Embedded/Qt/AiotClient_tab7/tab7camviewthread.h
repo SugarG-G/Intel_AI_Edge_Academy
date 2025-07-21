@@ -23,6 +23,8 @@ class Tab7CamViewThread : public QWidget
 
         void on_pPBsnapShot_clicked();
 
+        void on_pCBrgb_clicked(bool checked);
+
     private:
         Ui::Tab7CamViewThread *ui;
         WebCamThread *pWebCamThread;
