@@ -1,2 +1,0 @@
-﻿StaticSample1.obj : error LNK2001: 확인할 수 없는 외부 기호 "public: static int Person::sharedMoney" (?sharedMoney@Person@@2HA)
-C:\Users\STC\Desktop\chi\예제 및 그림 소스\chap6\x64\Debug\그림 6-9.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.

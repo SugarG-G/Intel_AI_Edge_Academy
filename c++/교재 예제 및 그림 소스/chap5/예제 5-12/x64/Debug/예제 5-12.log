@@ -1,4 +1,0 @@
-﻿  ex5-12-ImplicitCopy.cpp
-C:\Users\STC\Desktop\chi\예제 및 그림 소스\chap5\예제 5-12\ex5-12-ImplicitCopy.cpp(19,10): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\STC\Desktop\chi\예제 및 그림 소스\chap5\예제 5-12\ex5-12-ImplicitCopy.cpp(26,10): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  예제 5-12.vcxproj -> C:\Users\STC\Desktop\chi\예제 및 그림 소스\chap5\x64\Debug\예제 5-12.exe
