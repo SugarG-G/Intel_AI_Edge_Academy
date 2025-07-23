@@ -5,7 +5,10 @@ Tab7CamViewThread::Tab7CamViewThread(QWidget *parent) : QWidget(parent), ui(new 
 {
     ui->setupUi(this);
     setWindowTitle("CamViewer");
+
     ui->pPBsnapShot->setEnabled(false);
+    ui->pCBrgb->setEnabled(false);
+
     pWebCamThread = new WebCamThread(this);
     pWebCamThread->pCamView = ui->plabelCamView;
 }
@@ -34,7 +37,9 @@ void Tab7CamViewThread::on_pPBcamStart_clicked(bool checked)
         pWebCamThread->camViewFlag = false;
         ui->pPBcamStart->setText("CamStart");
         ui->pPBsnapShot->setEnabled(false);
+
     }
+    ui->pCBrgb->setEnabled(checked);
 }
 
 
@@ -43,3 +48,20 @@ void Tab7CamViewThread::on_pPBsnapShot_clicked()
     pWebCamThread->snapShot();
 }
 
+
+void Tab7CamViewThread::on_pCBrgb_clicked(bool checked)
+{
+    if(checked)
+    {
+        pWebCamThread->rgbTimerStart();
+    }
+    else
+    {
+        pWebCamThread->rgbTimerStop();
+    }
+}
+
+WebCamThread* Tab7CamViewThread::getpWebCamThread()
+{
+    return pWebCamThread;
+}

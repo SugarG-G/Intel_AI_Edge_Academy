@@ -35,6 +35,7 @@ MainWidget::MainWidget(QWidget *parent)
     connect(pTab2SocketClient, SIGNAL(tab3RecvDataSig(QString)), pTab3ControlPannel, SLOT(tab3RecvDataSlot(QString)));
     connect(pTab2SocketClient, SIGNAL(tab4RecvDataSig(QString)), pTab4SensorChart, SLOT(tab4RecvDataSlot(QString)));
     connect(pTab2SocketClient, SIGNAL(tab5RecvDataSig(QString)), pTab5SensorDatabase, SLOT(tab5RecvDataSlot(QString)));
+    connect(pTab7CamViewThread->getpWebCamThread(), SIGNAL(socketSendDataSig(QString)), pTab2SocketClient->getpSocketClient(), SLOT(socketWriteDataSlot(QString)));
 }
 
 MainWidget::~MainWidget()
