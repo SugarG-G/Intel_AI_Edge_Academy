@@ -9,7 +9,7 @@ int main()
     cout << "Hello OpenCV " << CV_VERSION << endl;
 
     Mat img;
-    img = imread("opencv_gilbut\\helloCV\\lenna.bmp");
+    img = imread("C:\\Users\\STC\\Desktop\\chi\\Intel_AI_Edge\\Embedded\\opencv\\OpenCV_Source\\helloCV\\lenna.bmp");
 
     if (img.empty()) {
         cerr << "Image load failed!" << endl;
@@ -21,7 +21,7 @@ int main()
     vector<int> params;
     params.push_back(IMWRITE_JPEG_QUALITY);
     params.push_back(95);
-    imwrite("opencv_gilbut\\helloCV\\lenna1.jpg", img, params);
+    imwrite("C:\\Users\\STC\\Desktop\\chi\\Intel_AI_Edge\\Embedded\\opencv\\OpenCV_Source\\helloCV\\lenna1.jpg", img, params);
 
     waitKey();
     destroyWindow("image");
