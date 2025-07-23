@@ -24,8 +24,8 @@ int main()
 	params.push_back(95);
 	imwrite("opencv_gilbut\\helloCV\\lenna1.jpg", img, params);
 
-	// destroyWindow("image");
 	waitKey();
+	destroyWindow("image");
 
 	return 0;
 }
