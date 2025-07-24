@@ -15,8 +15,7 @@ int main()
     vector<Size> v3(arr_size, arr_size + sizeof(arr_size) / sizeof(Size));
     vector<int> v4(arr_int + 2, arr_int + sizeof(arr_int) / sizeof(int));
 
-    cout << "[v1] " << ((Mat)v1) << endl
-         << endl;
+    cout << "[v1] " << ((Mat)v1) << endl << endl;
     cout << "[v2] " << ((Mat)v2).reshape(1, 1) << endl;
     cout << "[v3] " << ((Mat)v3).reshape(1, 1) << endl;
     cout << "[v4] " << ((Mat)v4).reshape(1, 1) << endl;

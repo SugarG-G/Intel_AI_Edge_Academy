@@ -23,18 +23,15 @@ int main()
     v1.insert(v1.begin() + 2, 100);
     print_vectorInfo("v1, insert(2) ", v1);
 
-    cout << ".capacity() = " << v1.capacity() << endl
-         << endl;
+    cout << ".capacity() = " << v1.capacity() << endl << endl;
 
     v1.erase(v1.begin() + 3);
     print_vectorInfo("v1, erase(3) ", v1);
-    cout << ".capacity() = " << v1.capacity() << endl
-         << endl;
+    cout << ".capacity() = " << v1.capacity() << endl << endl;
 
     v1.erase(v1.begin() + 3);
     print_vectorInfo("v1, erase(3) ", v1);
-    cout << ".capacity() = " << v1.capacity() << endl
-         << endl;
+    cout << ".capacity() = " << v1.capacity() << endl << endl;
     v1.clear();
     print_vectorInfo("v1, clear() ", v1);
 
