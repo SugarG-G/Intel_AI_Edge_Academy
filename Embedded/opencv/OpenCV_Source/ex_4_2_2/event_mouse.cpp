@@ -2,35 +2,39 @@
 using namespace cv;
 using namespace std;
 
-void onMouse(int, int, int, int, void *); // ë§ˆìš°ìŠ¤ ì½œë°± í•¨ìˆ˜
+void onMouse(int, int, int, int, void *); // ¸¶¿ì½º Äİ¹é ÇÔ¼ö
 
 int main()
 {
     Mat image(200, 300, CV_8U);
-    image.setTo(255); // image í–‰ë ¬ ì´ˆê¸°í™” - í°ìƒ‰ ë°”íƒ•
-    imshow("ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸1", image);
-    imshow("ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸2", image);
+    image.setTo(255); // image Çà·Ä ÃÊ±âÈ­ - Èò»ö ¹ÙÅÁ
+    imshow("¸¶¿ì½º ÀÌº¥Æ®1", image);
+    imshow("¸¶¿ì½º ÀÌº¥Æ®2", image);
 
-    setMouseCallback("ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸1", onMouse, 0);
+    setMouseCallback("¸¶¿ì½º ÀÌº¥Æ®1", onMouse, 0);
     waitKey(0);
     return 0;
 }
 
 void onMouse(int event, int x, int y, int flags, void *param)
 {
-    switch (event) // switchë¬¸ìœ¼ë¡œ eventê°’ì— ë”°ë¼ ë²„íŠ¼ ì¢…ë¥˜ë¥¼ êµ¬ë¶„
+    cout << "x : " << x << " y : " << y << " flags : " << flags << endl; // °ª Ãâ·Â
+    switch (event) // switch¹®À¸·Î event°ª¿¡ µû¶ó ¹öÆ° Á¾·ù¸¦ ±¸ºĞ
     {
     case EVENT_LBUTTONDOWN:
-        cout << "ë§ˆìš°ìŠ¤ ì™¼ìª½ë²„íŠ¼ ëˆ„ë¥´ê¸°" << endl;
+        cout << "¸¶¿ì½º ¿ŞÂÊ¹öÆ° ´©¸£±â" << endl;
         break;
     case EVENT_RBUTTONDOWN:
-        cout << "ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ë²„íŠ¼ ëˆ„ë¥´ê¸°" << endl;
+        cout << "¸¶¿ì½º ¿À¸¥ÂÊ¹öÆ° ´©¸£±â" << endl;
         break;
     case EVENT_RBUTTONUP:
-        cout << "ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ë²„íŠ¼ ë–¼ê¸°" << endl;
+        cout << "¸¶¿ì½º ¿À¸¥ÂÊ¹öÆ° ¶¼±â" << endl;
         break;
     case EVENT_LBUTTONDBLCLK:
-        cout << "ë§ˆìš°ìŠ¤ ì™¼ìª½ë²„íŠ¼ ë”ë¸”í´ë¦­" << endl;
+        cout << "¸¶¿ì½º ¿ŞÂÊ¹öÆ° ´õºíÅ¬¸¯" << endl;
+        break;
+    case EVENT_MBUTTONDOWN:
+        cout << "¸¶¿ì½º Áß°£¹öÆ° ´©¸£±â" << endl; // Áß°£ ¹öÆ°
         break;
     }
 }
