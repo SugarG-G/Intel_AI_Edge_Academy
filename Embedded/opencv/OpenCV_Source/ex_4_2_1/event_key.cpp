@@ -4,8 +4,8 @@ using namespace std;
 int main()
 {
     Mat image(200, 300, CV_8UC1, Scalar(255));
-    namedWindow("ÌÇ§Î≥¥Îìú Ïù¥Î≤§Ìä∏", WINDOW_AUTOSIZE);
-    imshow("ÌÇ§Î≥¥Îìú Ïù¥Î≤§Ìä∏", image);
+    namedWindow("≈∞∫∏µÂ ¿Ã∫•∆Æ", WINDOW_AUTOSIZE);
+    imshow("≈∞∫∏µÂ ¿Ã∫•∆Æ", image);
 
     while (1) {
         int key = waitKey(100);
@@ -14,29 +14,29 @@ int main()
 
         switch (key) {
         case 'a':
-            cout << "aÌÇ§ ÏûÖÎ†•" << endl;
+            cout << "a≈∞ ¿‘∑¬" << endl;
             break;
         case 'b':
-            cout << "bÌÇ§ ÏûÖÎ†•" << endl;
+            cout << "b≈∞ ¿‘∑¬" << endl;
             break;
         case 0x41:
-            cout << "AÌÇ§ ÏûÖÎ†•" << endl;
+            cout << "A≈∞ ¿‘∑¬" << endl;
             break;
         case 66:
-            cout << "BÌÇ§ ÏûÖÎ†•" << endl;
+            cout << "B≈∞ ¿‘∑¬" << endl;
             break;
 
         case 0x250000:
-            cout << "ÏôºÏ™Ω ÌôîÏÇ¥ÌëúÌÇ§ ÏûÖÎ†•" << endl;
+            cout << "øﬁ¬  »≠ªÏ«•≈∞ ¿‘∑¬" << endl;
             break;
         case 0x260000:
-            cout << "ÏúóÏ™Ω ÌôîÏÇ¥ÌëúÌÇ§ ÏûÖÎ†•" << endl;
+            cout << "¿≠¬  »≠ªÏ«•≈∞ ¿‘∑¬" << endl;
             break;
         case 0x270000:
-            cout << "Ïò§Î•∏Ï™Ω ÌôîÏÇ¥ÌëúÌÇ§ ÏûÖÎ†•" << endl;
+            cout << "ø¿∏•¬  »≠ªÏ«•≈∞ ¿‘∑¬" << endl;
             break;
         case 0x280000:
-            cout << "ÏïÑÎûòÏ™Ω ÌôîÏÇ¥ÌëúÌÇ§ ÏûÖÎ†•" << endl;
+            cout << "æ∆∑°¬  »≠ªÏ«•≈∞ ¿‘∑¬" << endl;
             break;
         }
     }
