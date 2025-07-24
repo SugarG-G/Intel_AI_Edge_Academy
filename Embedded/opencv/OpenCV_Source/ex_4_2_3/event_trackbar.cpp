@@ -2,13 +2,13 @@
 using namespace cv;
 using namespace std;
 
-string title = "íŠ¸ë™ë°” ì´ë²¤íŠ¸";
+string title = "Æ®·¢¹Ù ÀÌº¥Æ®";
 Mat image;
 
 void onChange(int value, void *userdata)
 {
     int add_value = value - 130;
-    cout << "ì¶”ê°€ í™”ì†Œê°’ " << add_value << endl;
+    cout << "Ãß°¡ È­¼Ò°ª " << add_value << endl;
 
     Mat tmp = image + add_value;
     imshow(title, tmp);
@@ -17,10 +17,10 @@ void onChange(int value, void *userdata)
 int main()
 {
     int value = 130;
-    image     = Mat(300, 400, CV_8UC1, Scalar(120));
+    image = Mat(300, 400, CV_8UC1, Scalar(120));
 
     namedWindow(title, WINDOW_AUTOSIZE);
-    createTrackbar("ë°ê¸°ê°’", title, &value, 255, onChange);
+    createTrackbar("¹à±â°ª", title, &value, 255, onChange);
 
     imshow(title, image);
     waitKey(0);
