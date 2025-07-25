@@ -1,3 +1,4 @@
+#include "../setMouseCallback.h"
 #include <opencv2/opencv.hpp>
 using namespace cv;
 using namespace std;
@@ -14,6 +15,7 @@ int main()
     putText(image, "ITALIC", pt3, FONT_HERSHEY_PLAIN | FONT_ITALIC, 2, violet);
 
     imshow("글자쓰기", image);
+    setMouseCallback("글자쓰기", onMouse, 0);
     waitKey(0);
     return 0;
 }
