@@ -12,7 +12,8 @@ int main()
     circle(image, pt2, 1, Scalar(0), 1);
 
     ellipse(image, pt1, Size(100, 60), 0, 0, 360, orange, 2);
-    ellipse(image, pt1, Size(100, 60), 0, 30, 270, blue, 4);
+    ellipse(image, pt1, Size(100, 60), 0, -30, 270, blue, 4);
+    // ellipse(image, pt1, Size(100, 60), 0, 330, 270, blue, 4);
 
     ellipse(image, pt2, Size(100, 60), 30, 0, 360, orange, 2);
     ellipse(image, pt2, Size(100, 60), 30, -30, 160, magenta, 4);
