@@ -14,7 +14,7 @@ void put_string(Mat &frame, string text, Point pt, int value)
 int main()
 {
     VideoCapture capture;
-    capture.open("../image/video_file.avi");
+    capture.open("OpenCV_Source/image/video_file.avi");
     CV_Assert(capture.isOpened());
 
     double frame_rate = capture.get(CAP_PROP_FPS);
