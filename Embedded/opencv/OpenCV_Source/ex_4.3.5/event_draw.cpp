@@ -14,7 +14,7 @@ void onMouse(int event, int x, int y, int flags, void *param)
             pt = Point(x, y);
         }
         else {
-            rectangle(image, pt, Point(x, y), Scalar(50), 2);
+            rectangle(image, pt, Point(x, y), Scalar(255, 0, 0), 2);
             imshow(title, image);
             pt = Point(-1, -1);
         }
@@ -26,7 +26,7 @@ void onMouse(int event, int x, int y, int flags, void *param)
         else {
             Point2d pt2 = pt - Point(x, y);
             int radius = (int)sqrt(pt2.x * pt2.x + pt2.y * pt2.y); // 두 좌표간 거리
-            circle(image, pt, radius, Scalar(150), 2);
+            circle(image, pt, radius, Scalar(128, 128, 128), 2);
 
             imshow(title, image);
             pt = Point(-1, -1);
@@ -39,7 +39,7 @@ void onMouse(int event, int x, int y, int flags, void *param)
         else {
             Point2d pt2 = pt - Point(x, y);
             int radius = (int)sqrt(pt2.x * pt2.x + pt2.y * pt2.y); // 두 좌표간 거리
-            circle(image, pt, radius, Scalar(150), 2);
+            circle(image, pt, radius, Scalar(128, 128, 128), 2);
 
             imshow(title, image);
             pt = Point(-1, -1);
@@ -48,7 +48,7 @@ void onMouse(int event, int x, int y, int flags, void *param)
 }
 int main()
 {
-    image = Mat(300, 500, CV_8UC1, Scalar(255));
+    image = Mat(300, 500, CV_8UC3, Scalar(255, 255, 255));
     imshow(title, image);
     setMouseCallback(title, onMouse, 0);
 
