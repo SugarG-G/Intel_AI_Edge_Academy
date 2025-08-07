@@ -1,0 +1,97 @@
+ubuntu20.04 수업 이미지 - JetsonNanoUb20_3b.img.xz
+https://github.com/Qengineering/Jetson-Nano-Ubuntu-20-image 
+이미지 다운로드 링크 https://ln5.sync.com/dl/403a73c60/bqppm39m-mh4qippt-u5mhyyfi-nnma8c4t  ( 8.7GB ) 다운로드 
+
+1. Raspberry Pi imager를 이용하여 시스템 이미지 write함
+JetsonNanoUb20_3b.img.xz 압축해제 하지 말고 그냥 write 함
+
+2.write 한 sd카드를 리눅스에 마운트 한 후
+ubuntu@ubuntu00:~$ df
+/dev/sdb1                    26340644  20841332   4287820  83% /media/ubuntu/b1c100cd-cc74-4e7f-acb8-f0d34c931ee8
+
+jetson 호스트 이름 변경 (nono ==> nonoXX)
+ubuntu@ubuntu00:~$ cd /media/ubuntu/b1c100cd-cc74-4e7f-acb8-f0d34c931ee8
+ubuntu@ubuntu00:/media/ubuntu/b1c100cd-cc74-4e7f-acb8-f0d34c931ee8$ cd etc
+ubuntu@ubuntu00:/media/ubuntu/b1c100cd-cc74-4e7f-acb8-f0d34c931ee8/etc$sudo vi hostname
+------------------
+nanoXX
+-----------------
+ubuntu@ubuntu00:/media/ubuntu/b1c100cd-cc74-4e7f-acb8-f0d34c931ee8/etc$ sudo vi hosts
+-----------------
+127.0.1.1		nanoXX
+----------------
+
+3. sd카드 루트파일 시스템 확장하기 32Gb ==> 64GB
+ $ cd ~
+ $ sudo umount /dev/sdb?
+ $ sudo gparted /dev/sdb
+ sdb1 파일시스템 확장 후 모든작업 진행 후 완료
+
+4. jetson nano에 sd 삽입 후 전원연결 및 부팅 1분 뒤쯤
+
+5.윈도우 명령창에서 ping 명령으로 nano00 dhcp ip 확인
+C:\Users\iot00> ping -4 nano00
+Ping nano00.local [192.168.0.158] 32바이트 데이터 사용:
+192.168.0.158의 응답: 바이트=32 시간<1ms TTL=64
+
+6. putty로 접속 jetson dhcp 주소 10.10.14.120 연결
+ id/passwd : jetson
+
+-HDMI 케이블 PC 모니터 연결, 키보드, 마우스 젯슨 보드 연결 후
+7. 고정 ip 할당 
+키보드 마우스 모니터 보드에 연결 후 부팅 
+바탕화면 설정 -> 네트워크 설정 -> ipv4 고정 ip 설정
+8.VNC 설정   
+바탕화면 설정 -> Sharing -> Screen Sharing  Off 선택 후  Wired connection1  활성화 후 닫기
+
+$ifconfig 및 인터넷 확인 후 재부팅 및 키보드 마우스 모니터를 PC에 연결
+
+8. putty nano 접속 후 (VNC 설정 계속)
+$ cd /usr/lib/systemd/user/graphical-session.target.wants/
+$ sudo ln -s ../vino-server.service ./.
+$ gsettings set org.gnome.Vino prompt-enabled false
+$ gsettings set org.gnome.Vino require-encryption false
+$ gsettings set org.gnome.Vino authentication-methods "['vnc']"
+$ gsettings set org.gnome.Vino vnc-password $(echo -n 'jetson'|base64)
+
+$ sudo apt install xserver-xorg-video-dummy
+$ cd /etc/X11
+$ sudo vi xorg.conf.dummy
+-------------------------
+Section "Device"
+    Identifier "DummyDevice"
+    Driver "dummy"
+    VideoRam 256000
+EndSection
+ 
+Section "Screen"
+    Identifier "DummyScreen"
+    Device "DummyDevice"
+    Monitor "DummyMonitor"
+    DefaultDepth 24
+    SubSection "Display"
+        Depth 24
+        Modes "1920x1080_60.0"
+    EndSubSection
+EndSection
+ 
+Section "Monitor"
+    Identifier "DummyMonitor"
+    HorizSync 30-70
+    VertRefresh 50-75
+    ModeLine "1920x1080" 148.50 1920 2448 2492 2640 1080 1084 1089 1125 +Hsync +Vsync
+EndSection
+-----------------------------------
+jetson@nano00:/etc/X11$ sudo cp xorg.conf xorg.conf.backup        #xorg.conf.backup  HDMI용
+jetson@nano00:/etc/X11$ sudo cp xorg.conf.dummy xorg.conf        #xorg.conf.dummy VNC용
+jetson@nano00:/etc/X11$ sudo reboot
+
+윈도우즈에서 vnc viewer 실행 후 접속
+
+9. yolo v8 설치 및 실행
+기존 swap 파일 백업
+jetson@nano00:~$ sudo mv /var/swapfile /var/swapfile_org 
+jetson@nano00:~$ mkdir yolov8 ; cd yolov8
+jetson@nano00:~/yolov8$ chmod u+x yolov8_install.sh
+jetson@nano00:~/yolov8$ ./yolov8_install.sh
+jetson@nano00:~/yolov8$ yolo task=detect mode=predict model=yolov8n.pt source=0 show=True
