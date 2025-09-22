@@ -1,2 +1,5 @@
 # Intel_AI_Edge_Acadamy
-´ëÇÑ»ó°øÈ¸ÀÇ¼Ò ¼­¿ï±â¼ú±³À°¼¾ÅÍ [Intel] AI ¿§Áö ¾ÆÄ«µ¥¹Ì ±³À° ±â·Ï¿ë
+ëŒ€í•œìƒê³µíšŒì˜ì†Œ ì„œìš¸ê¸°ìˆ êµìœ¡ì„¼í„° [Intel] AI ì—£ì§€ ì•„ì¹´ë°ë¯¸ êµìœ¡ ê¸°ë¡ìš©
+
+# Notion Link
+https://www.notion.so/Intel-Edge-AI-SW-Academy-1e0fd01605be80408ab8dd767db9d2a6?source=copy_link
