@@ -25,6 +25,5 @@ cache/
 data/
 __pycache__
 *.zip
-*.pdf
 *.png
 *.pth
